@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ProductRepoImpl: ProductRepo {
+class ProductRepositoryImpl: ProductRepository{
     private let service: ProductService
     
     init(service: ProductService) {
