@@ -80,18 +80,12 @@ struct ProductPrice: View {
     }
 }
 
-struct DetailViewScreen: View {
-    var body: some View {
-        Text("Detail View")
-    }
-}
-
 struct ProductDetailRow: View {
     let product: Product
     
     var body: some View {
         NavigationLink {
-            DetailViewScreen()
+            ProductDetailView(product: product)
         } label: {
             HStack {
                 ProductImage(image: product.image)

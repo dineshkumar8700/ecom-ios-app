@@ -16,7 +16,9 @@ struct ecom_mvvmApp: App {
             let useCase = FetchProductUseCase(repository: repository)
             let viewModel = ProductListViewModel(fetchProductUsecase: useCase)
             
-            ProductListView(vm: viewModel)
+            NavigationStack {
+                ProductListView(vm: viewModel)
+            }
         }
     }
 }
