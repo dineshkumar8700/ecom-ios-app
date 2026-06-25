@@ -27,6 +27,34 @@ struct ProductImage: View {
     }
 }
 
+struct ProductRating: View {
+    let rating: Rating
+    let maxRating: Int = 5
+    
+    var body: some View {
+        HStack(spacing: 2) {
+            ForEach(0..<maxRating, id: \.self) { index in
+                Image(systemName: starType(for: index))
+                    .resizable()
+                    .frame(width: 12, height: 12)
+                    .foregroundStyle(.yellow)
+            }
+            Text("(\(rating.count))")
+                .font(Font.system(size: 12))
+                .foregroundStyle(.gray)
+        }
+    }
+    
+    private func starType(for index: Int) -> String {
+        let starNumber = Double(index + 1)
+        
+        if rating.rate >= starNumber { return "star.fill" }
+        if rating.rate >= starNumber - 0.5 { return "star.leadinghalf.filled" }
+        
+        return "star"
+    }
+}
+
 struct ProductTitle: View {
     let title: String
     
@@ -52,25 +80,37 @@ struct ProductPrice: View {
     }
 }
 
+struct DetailViewScreen: View {
+    var body: some View {
+        Text("Detail View")
+    }
+}
+
 struct ProductDetailRow: View {
     let product: Product
     
     var body: some View {
-        HStack {
-            ProductImage(image: product.image)
-            ProductTitle(title: product.title)
-            Spacer()
-            ProductPrice(price: product.price)
-    
+        NavigationLink {
+            DetailViewScreen()
+        } label: {
+            HStack {
+                ProductImage(image: product.image)
+                VStack(alignment: .leading, spacing: 6) {
+                    ProductTitle(title: product.title)
+                    ProductRating(rating: product.rating)
+                    ProductPrice(price: product.price)
+                    
+                }
+            }
         }
     }
 }
 
 struct ProductListView: View {
-    @StateObject private var vm: ProductListViewModel
+    @ObservedObject private var vm: ProductListViewModel
     
     init(vm: ProductListViewModel) {
-        _vm = StateObject(wrappedValue: vm)
+        self.vm = vm
     }
     
     var body: some View {
