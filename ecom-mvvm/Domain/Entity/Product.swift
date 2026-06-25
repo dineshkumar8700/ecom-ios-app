@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Product: Identifiable, Decodable {
+struct Product: Identifiable, Decodable, Hashable {
     var id: Int
     var title: String
     var price: Double
@@ -15,7 +15,7 @@ struct Product: Identifiable, Decodable {
     var rating: Rating
 }
 
-struct Rating: Decodable {
+struct Rating: Decodable, Hashable {
     var rate: Double
     var count: Int
 }

@@ -23,7 +23,6 @@ struct BuyButton: View {
     let price: Double
     
     var body: some View {
-//            Text("Buy Now\nat $\(price, specifier: "%.2f")")
             Text("""
                 Buy Now 
                 at $\(price, specifier: "%.2f")

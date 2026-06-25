@@ -84,9 +84,7 @@ struct ProductDetailRow: View {
     let product: Product
     
     var body: some View {
-        NavigationLink {
-            ProductDetailView(product: product)
-        } label: {
+        NavigationLink(value: product) {
             HStack {
                 ProductImage(image: product.image)
                 VStack(alignment: .leading, spacing: 6) {

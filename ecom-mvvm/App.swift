@@ -18,6 +18,9 @@ struct ecom_mvvmApp: App {
             
             NavigationStack {
                 ProductListView(vm: viewModel)
+                    .navigationDestination(for: Product.self) { product in
+                        ProductDetailView(product: product)
+                    }
             }
         }
     }
