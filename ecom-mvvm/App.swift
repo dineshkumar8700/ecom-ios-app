@@ -18,8 +18,13 @@ struct ecom_mvvmApp: App {
             
             NavigationStack {
                 ProductListView(vm: viewModel)
-                    .navigationDestination(for: Product.self) { product in
-                        ProductDetailView(product: product)
+                    .navigationDestination(for: ProductRoute.self) { route in
+                        switch route {
+                            case .product(let product):
+                                ProductDetailView(product: product)
+                        case .checkout:
+                            CheckoutView()
+                        }
                     }
             }
         }

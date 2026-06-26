@@ -84,7 +84,7 @@ struct ProductDetailRow: View {
     let product: Product
     
     var body: some View {
-        NavigationLink(value: product) {
+        NavigationLink(value: ProductRoute.product(product)) {
             HStack {
                 ProductImage(image: product.image)
                 VStack(alignment: .leading, spacing: 6) {
@@ -111,14 +111,14 @@ struct ProductListView: View {
                 .font(.title)
                 .fontWeight(.bold)
             
-            List(vm.products) { product in
+            List(vm.state.products) { product in
                 ProductDetailRow(product: product)
 
             }.listStyle(.plain)
                 
         }
         .task {
-            await vm.fetchProducts()
+            await vm.send(action: .onAppear)
         }
     }
 }

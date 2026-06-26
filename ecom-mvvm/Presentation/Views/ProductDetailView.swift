@@ -59,16 +59,14 @@ struct ProductDetailView: View {
             
             DisplayText(text: product.title)
             DisplayText(text: "$\(product.price)")
-            NavigationLink {
-                CheckoutView()
-            } label: {
+            
+            NavigationLink(value: ProductRoute.checkout) {
                 HStack {
                     BuyButton(price: product.price)
                     Spacer()
                 }
             }
-            
-            
+
             Spacer()
         }
         .padding()
