@@ -14,6 +14,7 @@ class ProductListViewModel: ObservableObject {
     private func fetchProducts() async {
         do {
             state.products = try await fetchProductUsecase.execute()
+            state.isLoading = false
         } catch {
             state.error = error.localizedDescription
         }

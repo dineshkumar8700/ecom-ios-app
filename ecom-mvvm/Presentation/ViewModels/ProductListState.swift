@@ -9,5 +9,6 @@ import Foundation
 
 struct ProductListState {
     var products: [Product] = []
+    var isLoading: Bool = true
     var error: String?
 }

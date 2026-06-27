@@ -1,10 +1,3 @@
-//
-//  Home.swift
-//  ecom-mvvm
-//
-//  Created by Dinesh Kumar on 24/06/26.
-//
-
 import Foundation
 import SwiftUI
 
@@ -98,6 +91,28 @@ struct ProductDetailRow: View {
     }
 }
 
+struct ProductList: View {
+    let products: [Product]
+    
+    var body: some View {
+        Text("Product List")
+            .font(.title)
+            .fontWeight(.bold)
+        
+        List(products) { product in
+            ProductDetailRow(product: product)
+
+        }.listStyle(.plain)
+    }
+}
+
+struct LoadingView: View {
+    var body: some View {
+        ProgressView()
+        Text("Loading...")
+    }
+}
+
 struct ProductListView: View {
     @ObservedObject private var vm: ProductListViewModel
     
@@ -107,15 +122,13 @@ struct ProductListView: View {
     
     var body: some View {
         VStack {
-            Text("Product List")
-                .font(.title)
-                .fontWeight(.bold)
+            if(vm.state.isLoading) {
+                LoadingView()
+            } else {
+                ProductList(products: vm.state.products)
+            }
             
-            List(vm.state.products) { product in
-                ProductDetailRow(product: product)
-
-            }.listStyle(.plain)
-                
+            
         }
         .task {
             await vm.send(action: .onAppear)
