@@ -2,8 +2,9 @@ import Foundation
 import Combine
 
 @MainActor
-class ProductListViewModel: ObservableObject {
-    @Published private(set) var state = ProductListState()
+@Observable
+class ProductListViewModel {
+    private(set) var state = ProductListState()
     
     private let fetchProductUsecase: FetchProductUseCase
     

@@ -114,7 +114,7 @@ struct LoadingView: View {
 }
 
 struct ProductListView: View {
-    @ObservedObject private var vm: ProductListViewModel
+    private var vm: ProductListViewModel
     
     init(vm: ProductListViewModel) {
         self.vm = vm
