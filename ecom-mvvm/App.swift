@@ -11,7 +11,8 @@ import SwiftUI
 struct ecom_mvvmApp: App {
     var body: some Scene {
         WindowGroup {
-            let service = ProductService()
+            let network = URLSessionNetworkClient()
+            let service = ProductService(network: network)
             let repository = ProductRepositoryImpl(service: service)
             let useCase = FetchProductUseCase(repository: repository)
             let viewModel = ProductListViewModel(fetchProductUsecase: useCase)
