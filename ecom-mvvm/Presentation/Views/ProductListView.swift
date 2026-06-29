@@ -85,6 +85,7 @@ struct ProductDetailRow: View {
 
 struct ProductList: View {
     let products: [Product]
+    let onRefresh: () async -> Void
     
     var body: some View {
         Text("Product List")
@@ -94,7 +95,11 @@ struct ProductList: View {
         List(products) { product in
             ProductDetailRow(product: product)
 
-        }.listStyle(.plain)
+        }
+        .listStyle(.plain)
+        .refreshable {
+            await onRefresh()
+        }
     }
 }
 
@@ -102,6 +107,21 @@ struct LoadingView: View {
     var body: some View {
         ProgressView()
         Text("Loading...")
+    }
+}
+
+struct ErrorView: View {
+    let retry: () async -> Void
+    
+    var body: some View {
+        VStack {
+            Text("Something went wrong")
+            Button("Retry") {
+                Task {
+                    await retry()
+                }
+            }
+        }
     }
 }
 
@@ -113,17 +133,27 @@ struct ProductListView: View {
     }
     
     var body: some View {
+        let load = {
+            await vm.send(action: .onAppear)
+        }
+        
+        let refresh = {
+            await vm.send(action: .onRefresh)
+        }
+        
         VStack {
             if(vm.state.isLoading) {
                 LoadingView()
-            } else {
-                ProductList(products: vm.state.products)
+            } else if vm.state.error != nil {
+                ErrorView(retry: load)
             }
-            
+            else {
+                ProductList(products: vm.state.products, onRefresh: refresh)
+            }
             
         }
         .task {
-            await vm.send(action: .onAppear)
+            await load()
         }
     }
 }

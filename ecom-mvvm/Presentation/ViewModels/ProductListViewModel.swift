@@ -13,9 +13,26 @@ class ProductListViewModel {
     }
     
     private func fetchProducts() async {
+        guard state.products.isEmpty else { return }
+        
+        await self.loadProducts(showLoader: true)
+    }
+    
+    private func refreshProducts() async {
+        await self.loadProducts(showLoader: false)
+    }
+    
+    private func loadProducts(showLoader: Bool) async {
+        if(showLoader) {
+            state.isLoading = true
+        }
+        
+        defer {
+            state.isLoading = false
+        }
+        
         do {
             state.products = try await fetchProductUsecase.execute()
-            state.isLoading = false
         } catch {
             state.error = error.localizedDescription
         }
@@ -25,6 +42,9 @@ class ProductListViewModel {
         switch action {
         case .onAppear:
             await self.fetchProducts()
+        case .onRefresh:
+            await self.refreshProducts()
         }
+    
     }
 }
