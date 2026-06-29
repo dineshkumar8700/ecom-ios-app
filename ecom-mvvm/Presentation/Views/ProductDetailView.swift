@@ -1,6 +1,5 @@
 import Foundation
 import SwiftUI
-import NukeUI
 
 struct CheckoutView : View {
     var body: some View {
@@ -43,24 +42,10 @@ struct ProductDetailView: View {
     
     var body: some View {
         VStack {
-            LazyImage(url: URL(string: product.image)) { state in
-                if let image = state.image {
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: .infinity, maxHeight: 300)
-                        .cornerRadius(10)
-                } else {
-                    Image(systemName: "photo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: .infinity, maxHeight: 300)
-                        .foregroundStyle(.gray)
-                        .cornerRadius(10)
-                    
-                }
-                
-            }.padding(10)
+            RemoteImage(url: URL(string: product.image)!)
+                .frame(maxWidth: .infinity, maxHeight: 300)
+                .cornerRadius(10)
+                .padding(10)
             
             DisplayText(text: product.title)
             DisplayText(text: "$\(product.price)")

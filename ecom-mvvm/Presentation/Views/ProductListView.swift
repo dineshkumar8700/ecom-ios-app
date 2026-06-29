@@ -1,28 +1,14 @@
 import Foundation
 import SwiftUI
-import NukeUI
-
 
 struct ProductImage: View {
     let image: String
     
     var body: some View {
         
-        LazyImage(url: URL(string: image)) { state in
-            if let image = state.image{
-                image
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 80, height: 80)
-            } else {
-                Image(systemName: "photo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 80, height: 80)
-                    .foregroundStyle(.gray)
-            }
-            
-        }.padding(10)
+        RemoteImage(url: URL(string: image)!)
+            .frame(width: 80, height: 80)
+            .padding(10)
     }
 }
 
