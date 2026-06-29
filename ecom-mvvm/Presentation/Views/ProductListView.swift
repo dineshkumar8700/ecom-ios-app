@@ -1,21 +1,27 @@
 import Foundation
 import SwiftUI
+import NukeUI
+
 
 struct ProductImage: View {
     let image: String
     
     var body: some View {
-        AsyncImage(url: URL(string: image)) { image in
-            image
-                .resizable()
-                .scaledToFit()
-                .frame(width: 80, height: 80)
-        } placeholder: {
-            Image(systemName: "photo")
+        
+        LazyImage(url: URL(string: image)) { state in
+            if let image = state.image{
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 80, height: 80)
+            } else {
+                Image(systemName: "photo")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 80, height: 80)
                     .foregroundStyle(.gray)
+            }
+            
         }.padding(10)
     }
 }
