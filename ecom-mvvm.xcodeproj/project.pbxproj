@@ -22,34 +22,46 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		711686F42FF3B7C200DE25F5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		716723A02FEBB3B9008F760C /* ecom-mvvm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ecom-mvvm.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		716723F52FF2C2E0008F760C /* ecom-mvvmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ecom-mvvmTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		716A60D32FF399A6000B94F5 /* Exceptions for "Tests" folder in "ecom-mvvm" target */ = {
+		711687052FF3B83000DE25F5 /* Exceptions for "ecom-mvvmTests" folder in "ecom-mvvm" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Helpers/TestError.swift,
 				Mocks/MockProductRepository.swift,
-				UseCases/FetchProductUseCaseTests.swift,
 			);
 			target = 7167239F2FEBB3B9008F760C /* ecom-mvvm */;
+		};
+		711687062FF3B83000DE25F5 /* Exceptions for "ecom-mvvmTests" folder in "ecom-mvvmTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Helpers/TestError.swift,
+				Mocks/MockFetchProductUseCase.swift,
+				Mocks/MockProductRepository.swift,
+				UseCases/FetchProductUseCaseTests.swift,
+				ViewModels/ProductListViewModelTests.swift,
+			);
+			target = 716723F42FF2C2E0008F760C /* ecom-mvvmTests */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		711686FD2FF3B81B00DE25F5 /* ecom-mvvmTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				711687052FF3B83000DE25F5 /* Exceptions for "ecom-mvvmTests" folder in "ecom-mvvm" target */,
+				711687062FF3B83000DE25F5 /* Exceptions for "ecom-mvvmTests" folder in "ecom-mvvmTests" target */,
+			);
+			path = "ecom-mvvmTests";
+			sourceTree = "<group>";
+		};
 		716723A22FEBB3B9008F760C /* ecom-mvvm */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "ecom-mvvm";
-			sourceTree = "<group>";
-		};
-		716723F62FF2C2E0008F760C /* Tests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				716A60D32FF399A6000B94F5 /* Exceptions for "Tests" folder in "ecom-mvvm" target */,
-			);
-			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -78,7 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				716723A22FEBB3B9008F760C /* ecom-mvvm */,
-				716723F62FF2C2E0008F760C /* Tests */,
+				711686FD2FF3B81B00DE25F5 /* ecom-mvvmTests */,
 				716723DD2FF22CCF008F760C /* Frameworks */,
 				716723A12FEBB3B9008F760C /* Products */,
 			);
@@ -96,6 +108,7 @@
 		716723DD2FF22CCF008F760C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				711686F42FF3B7C200DE25F5 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -140,9 +153,6 @@
 			dependencies = (
 				716723FA2FF2C2E0008F760C /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				716723F62FF2C2E0008F760C /* Tests */,
-			);
 			name = "ecom-mvvmTests";
 			packageProductDependencies = (
 			);
@@ -157,8 +167,8 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2650;
-				LastUpgradeCheck = 2650;
+				LastSwiftUpdateCheck = 2660;
+				LastUpgradeCheck = 2660;
 				TargetAttributes = {
 					7167239F2FEBB3B9008F760C = {
 						CreatedOnToolsVersion = 26.5;
@@ -241,6 +251,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -270,6 +281,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -292,6 +304,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -303,6 +316,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -332,6 +346,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -347,6 +362,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
@@ -359,6 +375,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
@@ -401,6 +418,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
