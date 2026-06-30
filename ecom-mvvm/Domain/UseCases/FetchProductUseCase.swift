@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FetchProductUseCase {
+struct FetchProductUseCase: FetchProductUseCaseProtocol {
     private let repository: ProductRepository
     
     init(repository: ProductRepository) {

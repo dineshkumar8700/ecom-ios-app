@@ -11,14 +11,43 @@
 		716723E12FF22CD2008F760C /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 716723E02FF22CD2008F760C /* NukeUI */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		716723F92FF2C2E0008F760C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 716723982FEBB3B9008F760C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7167239F2FEBB3B9008F760C;
+			remoteInfo = "ecom-mvvm";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		716723A02FEBB3B9008F760C /* ecom-mvvm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ecom-mvvm.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		716723F52FF2C2E0008F760C /* ecom-mvvmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ecom-mvvmTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		716A60D32FF399A6000B94F5 /* Exceptions for "Tests" folder in "ecom-mvvm" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Helpers/TestError.swift,
+			);
+			target = 7167239F2FEBB3B9008F760C /* ecom-mvvm */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		716723A22FEBB3B9008F760C /* ecom-mvvm */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "ecom-mvvm";
+			sourceTree = "<group>";
+		};
+		716723F62FF2C2E0008F760C /* Tests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				716A60D32FF399A6000B94F5 /* Exceptions for "Tests" folder in "ecom-mvvm" target */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -33,6 +62,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		716723F22FF2C2E0008F760C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -40,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				716723A22FEBB3B9008F760C /* ecom-mvvm */,
+				716723F62FF2C2E0008F760C /* Tests */,
 				716723DD2FF22CCF008F760C /* Frameworks */,
 				716723A12FEBB3B9008F760C /* Products */,
 			);
@@ -49,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				716723A02FEBB3B9008F760C /* ecom-mvvm.app */,
+				716723F52FF2C2E0008F760C /* ecom-mvvmTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,6 +125,29 @@
 			productReference = 716723A02FEBB3B9008F760C /* ecom-mvvm.app */;
 			productType = "com.apple.product-type.application";
 		};
+		716723F42FF2C2E0008F760C /* ecom-mvvmTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 716723FB2FF2C2E0008F760C /* Build configuration list for PBXNativeTarget "ecom-mvvmTests" */;
+			buildPhases = (
+				716723F12FF2C2E0008F760C /* Sources */,
+				716723F22FF2C2E0008F760C /* Frameworks */,
+				716723F32FF2C2E0008F760C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				716723FA2FF2C2E0008F760C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				716723F62FF2C2E0008F760C /* Tests */,
+			);
+			name = "ecom-mvvmTests";
+			packageProductDependencies = (
+			);
+			productName = "ecom-mvvmTests";
+			productReference = 716723F52FF2C2E0008F760C /* ecom-mvvmTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -99,6 +160,10 @@
 				TargetAttributes = {
 					7167239F2FEBB3B9008F760C = {
 						CreatedOnToolsVersion = 26.5;
+					};
+					716723F42FF2C2E0008F760C = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = 7167239F2FEBB3B9008F760C;
 					};
 				};
 			};
@@ -121,12 +186,20 @@
 			projectRoot = "";
 			targets = (
 				7167239F2FEBB3B9008F760C /* ecom-mvvm */,
+				716723F42FF2C2E0008F760C /* ecom-mvvmTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		7167239E2FEBB3B9008F760C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		716723F32FF2C2E0008F760C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -143,7 +216,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		716723F12FF2C2E0008F760C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		716723FA2FF2C2E0008F760C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7167239F2FEBB3B9008F760C /* ecom-mvvm */;
+			targetProxy = 716723F92FF2C2E0008F760C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		716723A92FEBB3BA008F760C /* Debug */ = {
@@ -346,6 +434,51 @@
 			};
 			name = Release;
 		};
+		716723FC2FF2C2E0008F760C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tw.step.ecom-mvvmTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ecom-mvvm.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ecom-mvvm";
+			};
+			name = Debug;
+		};
+		716723FD2FF2C2E0008F760C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tw.step.ecom-mvvmTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ecom-mvvm.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ecom-mvvm";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -363,6 +496,15 @@
 			buildConfigurations = (
 				716723AC2FEBB3BA008F760C /* Debug */,
 				716723AD2FEBB3BA008F760C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		716723FB2FF2C2E0008F760C /* Build configuration list for PBXNativeTarget "ecom-mvvmTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				716723FC2FF2C2E0008F760C /* Debug */,
+				716723FD2FF2C2E0008F760C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

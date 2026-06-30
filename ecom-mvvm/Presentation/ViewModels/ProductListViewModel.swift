@@ -6,9 +6,9 @@ import Combine
 class ProductListViewModel {
     private(set) var state = ProductListState()
     
-    private let fetchProductUsecase: FetchProductUseCase
+    private let fetchProductUsecase: FetchProductUseCaseProtocol
     
-    init(fetchProductUsecase: FetchProductUseCase) {
+    init(fetchProductUsecase: FetchProductUseCaseProtocol) {
         self.fetchProductUsecase = fetchProductUsecase
     }
     
