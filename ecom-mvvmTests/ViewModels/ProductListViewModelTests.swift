@@ -3,13 +3,24 @@ import XCTest
 
 @MainActor
 final class ProductListViewModelTests: XCTestCase {
+    var mockUseCase: MockFetchProductUseCase!
+    var sut: ProductListViewModel!
+    
+    override func setUp() {
+        super.setUp()
+        
+        mockUseCase = MockFetchProductUseCase()
+        sut = ProductListViewModel(fetchProductUsecase: mockUseCase)
+    }
+    
+    override func tearDown() {
+        mockUseCase = nil
+        sut = nil
+        
+        super.tearDown()
+    }
+    
     func testInitialState() {
-        
-        // Arrange
-        let mockUseCase = MockFetchProductUseCase()
-        let sut = ProductListViewModel(fetchProductUsecase: mockUseCase)
-        
-        // Assert
         XCTAssertTrue(sut.state.products.isEmpty)
         XCTAssertFalse(sut.state.isLoading)
         XCTAssertNil(sut.state.error)
@@ -17,9 +28,6 @@ final class ProductListViewModelTests: XCTestCase {
     }
     
     func testOnAppearLoadsProducts() async {
-        // Arrange
-        let mockUseCase = MockFetchProductUseCase()
-        
         let products = [
             Product(
                 id: 1,
@@ -32,18 +40,13 @@ final class ProductListViewModelTests: XCTestCase {
         
         mockUseCase.result = .success(products)
         
-        let sut = ProductListViewModel(fetchProductUsecase: mockUseCase)
-        
-        // Act
         await sut.send(action: .onAppear)
         
-        // Assert
         XCTAssertEqual(sut.state.products.count, 1)
         XCTAssertEqual(sut.state.products.first?.title, "iphone")
     }
     
     func testOnAppearShouldNotFetchAgainWhenProductsAreAlreadyLoaded() async {
-        let mockUseCase = MockFetchProductUseCase()
         let products = [
             Product(
                 id: 1,
@@ -55,8 +58,6 @@ final class ProductListViewModelTests: XCTestCase {
         ]
         
         mockUseCase.result = .success(products)
-        
-        let sut = ProductListViewModel(fetchProductUsecase: mockUseCase)
         
         await sut.send(action: .onAppear)
         await sut.send(action: .onAppear)
@@ -65,10 +66,7 @@ final class ProductListViewModelTests: XCTestCase {
     }
     
     func testOnAppearFetchFailureSetsError() async {
-        let mockUseCase = MockFetchProductUseCase()
         mockUseCase.result = .failure(TestError.network)
-        
-        let sut = ProductListViewModel(fetchProductUsecase: mockUseCase)
         
         await sut.send(action: .onAppear)
         
@@ -78,7 +76,6 @@ final class ProductListViewModelTests: XCTestCase {
     }
     
     func testOnRefreshShouldAlwaysFetchFreshData() async {
-        let mockUseCase = MockFetchProductUseCase()
         let products = [
             Product(
                 id: 1,
@@ -90,8 +87,6 @@ final class ProductListViewModelTests: XCTestCase {
         ]
         
         mockUseCase.result = .success(products)
-        
-        let sut = ProductListViewModel(fetchProductUsecase: mockUseCase)
         
         await sut.send(action: .onRefresh)
         await sut.send(action: .onRefresh)

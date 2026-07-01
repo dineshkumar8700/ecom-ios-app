@@ -3,10 +3,24 @@ import XCTest
 
 @MainActor
 final class FetchProductUseCaseTests: XCTestCase {
-    func testExecuteShouldReturnProductList() async throws {
-        // Arrange
-        let mockRepository = MockProductRepository()
+    var mockRepository: MockProductRepository!
+    var sut : FetchProductUseCase!
+    
+    override func setUp() {
+        super.setUp()
         
+        mockRepository = MockProductRepository()
+        sut = FetchProductUseCase(repository: mockRepository)
+    }
+    
+    override func tearDown() {
+        mockRepository = nil
+        sut = nil
+        
+        super.tearDown()
+    }
+    
+    func testExecuteShouldReturnProductList() async throws {
         let products = [
             Product(
                 id: 1,
@@ -18,22 +32,16 @@ final class FetchProductUseCaseTests: XCTestCase {
         ]
         
         mockRepository.result = .success(products)
-        let sut = FetchProductUseCase(repository: mockRepository)
 
-        // Act
         let result = try await sut.execute()
 
-        // Assert
         XCTAssertEqual(result.count, 1)
         XCTAssertEqual(result.first?.id, 1)
         XCTAssertEqual(result.first?.title, "iphone")
     }
     
     func testExecuteThrowError() async throws {
-        let mockRepository = MockProductRepository()
         mockRepository.result = .failure(TestError.network)
-        
-        let sut = FetchProductUseCase(repository: mockRepository)
         
         do {
             _ = try await sut.execute()
@@ -42,6 +50,6 @@ final class FetchProductUseCaseTests: XCTestCase {
         } catch {
             XCTAssertTrue(error is TestError)
         }
-        
+    
     }
 }

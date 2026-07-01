@@ -33,6 +33,7 @@ class ProductListViewModel {
         
         do {
             state.products = try await fetchProductUsecase.execute()
+//            state.products = []
         } catch {
             state.error = error.localizedDescription
         }

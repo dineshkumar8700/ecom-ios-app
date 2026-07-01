@@ -23,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		711686F42FF3B7C200DE25F5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		711A38CD2FF3BD70000D645F /* ecom_mvvmTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ecom_mvvmTests.swift; sourceTree = "<group>"; };
 		716723A02FEBB3B9008F760C /* ecom-mvvm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ecom-mvvm.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		716723F52FF2C2E0008F760C /* ecom-mvvmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ecom-mvvmTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -109,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				711686F42FF3B7C200DE25F5 /* XCTest.framework */,
+				711A38CD2FF3BD70000D645F /* ecom_mvvmTests.swift */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
