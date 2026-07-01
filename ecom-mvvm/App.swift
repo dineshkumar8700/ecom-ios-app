@@ -17,17 +17,8 @@ struct ecom_mvvmApp: App {
             let useCase = FetchProductUseCase(repository: repository)
             let viewModel = ProductListViewModel(fetchProductUsecase: useCase)
             
-            NavigationStack {
-                ProductListView(vm: viewModel)
-                    .navigationDestination(for: ProductRoute.self) { route in
-                        switch route {
-                            case .product(let product):
-                                ProductDetailView(product: product)
-                        case .checkout:
-                            CheckoutView()
-                        }
-                    }
+            HomeView(vm: viewModel)
+                    
             }
         }
     }
-}
