@@ -68,15 +68,18 @@ struct ProductPrice: View {
 struct ProductDetailRow: View {
     let product: Product
     
+    @EnvironmentObject var coordinator: AppCoordinator
+    
     var body: some View {
-        NavigationLink(value: ProductRoute.product(product)) {
+        Button {
+            coordinator.showProduct(product: product)
+        } label: {
             HStack {
                 ProductImage(image: product.image)
                 VStack(alignment: .leading, spacing: 6) {
                     ProductTitle(title: product.title)
                     ProductRating(rating: product.rating)
                     ProductPrice(price: product.price)
-                    
                 }
             }
         }
@@ -126,12 +129,8 @@ struct ErrorView: View {
 }
 
 struct ProductListView: View {
-    private var vm: ProductListViewModel
-    
-    init(vm: ProductListViewModel) {
-        self.vm = vm
-    }
-    
+    var vm: ProductListViewModel
+
     var body: some View {
         let load = {
             await vm.send(action: .onAppear)

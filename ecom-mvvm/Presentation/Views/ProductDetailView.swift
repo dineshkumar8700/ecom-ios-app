@@ -39,6 +39,7 @@ struct BuyButton: View {
 
 struct ProductDetailView: View {
     let product: Product
+    @EnvironmentObject var coordinator: AppCoordinator
     
     var body: some View {
         VStack {
@@ -50,7 +51,9 @@ struct ProductDetailView: View {
             DisplayText(text: product.title)
             DisplayText(text: "$\(product.price)")
             
-            NavigationLink(value: ProductRoute.checkout) {
+            Button {
+                coordinator.showCheckout()
+            } label: {
                 HStack {
                     BuyButton(price: product.price)
                     Spacer()
