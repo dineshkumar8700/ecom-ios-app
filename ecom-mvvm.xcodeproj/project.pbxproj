@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		711A39872FF78B41000D645F /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 711A39862FF78B41000D645F /* Nimble */; };
 		716723DF2FF22CCF008F760C /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 716723DE2FF22CCF008F760C /* Nuke */; };
 		716723E12FF22CD2008F760C /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 716723E02FF22CD2008F760C /* NukeUI */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,8 @@
 		711687062FF3B83000DE25F5 /* Exceptions for "ecom-mvvmTests" folder in "ecom-mvvmTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				AsyncUnitTests/AsyncUnitTestExample.swift,
+				AsyncUnitTests/NimbleSampleTest.swift,
 				Helpers/TestError.swift,
 				Mocks/MockFetchProductUseCase.swift,
 				Mocks/MockProductRepository.swift,
@@ -81,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				711A39872FF78B41000D645F /* Nimble in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +161,7 @@
 			);
 			name = "ecom-mvvmTests";
 			packageProductDependencies = (
+				711A39862FF78B41000D645F /* Nimble */,
 			);
 			productName = "ecom-mvvmTests";
 			productReference = 716723F52FF2C2E0008F760C /* ecom-mvvmTests.xctest */;
@@ -193,6 +198,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				716723DC2FF22BD1008F760C /* XCRemoteSwiftPackageReference "Nuke" */,
+				711A39852FF78B41000D645F /* XCRemoteSwiftPackageReference "Nimble" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 716723A12FEBB3B9008F760C /* Products */;
@@ -534,6 +540,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		711A39852FF78B41000D645F /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Nimble?utm_source=chatgpt.com";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		716723DC2FF22BD1008F760C /* XCRemoteSwiftPackageReference "Nuke" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/Nuke";
@@ -545,6 +559,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		711A39862FF78B41000D645F /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 711A39852FF78B41000D645F /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
+		};
 		716723DE2FF22CCF008F760C /* Nuke */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 716723DC2FF22BD1008F760C /* XCRemoteSwiftPackageReference "Nuke" */;

@@ -18,7 +18,6 @@ struct ecom_mvvmApp: App {
             let viewModel = ProductListViewModel(fetchProductUsecase: useCase)
             
             HomeView(vm: viewModel)
-                    
-            }
         }
     }
+}

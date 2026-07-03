@@ -27,9 +27,9 @@ struct BuyButton: View {
                 Buy Now 
                 at $\(price, specifier: "%.2f")
                 """)
+                .frame(alignment: .leading)
                 .padding(.horizontal, 14)
                 .padding(.vertical, 10)
-                .frame(alignment: .leading)
                 .font(.system(size: 12))
                 .background(Color.blue)
                 .foregroundColor(.white)
@@ -39,7 +39,7 @@ struct BuyButton: View {
 
 struct ProductDetailView: View {
     let product: Product
-    @EnvironmentObject var coordinator: AppCoordinator
+    @EnvironmentObject var coordinator: HomeCoordinator
     
     var body: some View {
         VStack {
@@ -52,7 +52,7 @@ struct ProductDetailView: View {
             DisplayText(text: "$\(product.price)")
             
             Button {
-                coordinator.showCheckout()
+                coordinator.push(.checkout)
             } label: {
                 HStack {
                     BuyButton(price: product.price)

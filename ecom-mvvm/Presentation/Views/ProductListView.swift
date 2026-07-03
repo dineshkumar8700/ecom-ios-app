@@ -68,11 +68,11 @@ struct ProductPrice: View {
 struct ProductDetailRow: View {
     let product: Product
     
-    @EnvironmentObject var coordinator: AppCoordinator
+    @EnvironmentObject var coordinator: HomeCoordinator
     
     var body: some View {
         Button {
-            coordinator.showProduct(product: product)
+            coordinator.push(.productDetail(product: product))
         } label: {
             HStack {
                 ProductImage(image: product.image)

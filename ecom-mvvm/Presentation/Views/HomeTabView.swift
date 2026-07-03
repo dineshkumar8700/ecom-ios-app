@@ -2,12 +2,12 @@ import SwiftUI
 
 struct HomeTabView: View {
     var vm: ProductListViewModel
-    @StateObject var coordinator = AppCoordinator()
+    @StateObject var coordinator = HomeCoordinator()
     
     var body: some View {
         NavigationStack(path: $coordinator.path) {
             ProductListView(vm: vm)
-                .navigationDestination(for: AppRoute.self) { route in
+                .navigationDestination(for: HomeRoute.self) { route in
                     switch route {
                         
                     case .productDetail(let product):
@@ -19,5 +19,6 @@ struct HomeTabView: View {
 
         }
         .environmentObject(coordinator)
+        
     }
 }
