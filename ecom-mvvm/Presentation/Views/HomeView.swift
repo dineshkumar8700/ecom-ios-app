@@ -6,7 +6,7 @@ struct HomeView: View {
     var body: some View {
 
         TabView {
-            HomeTabView(vm: vm)
+            HomeCoordinatorView(vm:vm)
                 .tabItem {
                     Label("Home", systemImage: "house")
             }

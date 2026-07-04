@@ -1,8 +1,9 @@
+import Foundation
 import SwiftUI
 
-struct HomeTabView: View {
+struct HomeCoordinatorView: View {
     var vm: ProductListViewModel
-    @StateObject var coordinator = HomeCoordinator()
+    @StateObject private var coordinator = HomeCoordinator()
     
     var body: some View {
         NavigationStack(path: $coordinator.path) {
@@ -16,9 +17,7 @@ struct HomeTabView: View {
                         CheckoutView()
                     }
                 }
-
         }
         .environmentObject(coordinator)
-        
     }
 }
