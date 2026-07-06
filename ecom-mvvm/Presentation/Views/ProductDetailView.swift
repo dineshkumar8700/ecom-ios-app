@@ -40,8 +40,10 @@ struct BuyButton: View {
 struct ProductDetailView: View {
     let product: Product
     @EnvironmentObject var coordinator: HomeCoordinator
+    @State var isPresent: Bool = false
     
     var body: some View {
+        
         VStack {
             RemoteImage(url: URL(string: product.image)!)
                 .frame(maxWidth: .infinity, maxHeight: 300)
@@ -60,6 +62,10 @@ struct ProductDetailView: View {
                 }
             }
 
+            Button("Open Sheet") {
+                coordinator.present(.Settings)
+            }
+            
             Spacer()
         }
         .padding()

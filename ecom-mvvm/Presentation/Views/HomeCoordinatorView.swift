@@ -18,6 +18,15 @@ struct HomeCoordinatorView: View {
                     }
                 }
         }
+        .sheet(item: $coordinator.sheet) {sheet in
+            switch sheet {
+            case .Settings :
+                SettingSheet()
+                    .presentationDetents([.medium, .large])
+                    .interactiveDismissDisabled()
+
+            }
+        }
         .environmentObject(coordinator)
     }
 }
