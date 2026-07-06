@@ -1,32 +1,34 @@
 import SwiftUI
 
-struct HomeView: View {
-    let vm: ProductListViewModel
+struct MainTabView: View {
+    let homeView: ProductListView
 
     var body: some View {
-
         TabView {
-            HomeCoordinatorView(vm:vm)
+            HomeCoordinatorView(homeView: homeView)
                 .tabItem {
                     Label("Home", systemImage: "house")
-            }
+                }
+
             NavigationStack {
                 Text("Shop")
             }
-                .tabItem {
-                    Label("Shop", systemImage: "magnifyingglass")
+            .tabItem {
+                Label("Shop", systemImage: "magnifyingglass")
             }
+
             NavigationStack {
                 Text("Cart")
             }
-                .tabItem {
-                    Label("Cart", systemImage: "cart")
+            .tabItem {
+                Label("Cart", systemImage: "cart")
             }
+
             NavigationStack {
                 Text("Account")
             }
-                .tabItem {
-                    Label("Account", systemImage: "person")
+            .tabItem {
+                Label("Account", systemImage: "person")
             }
         }
     }
