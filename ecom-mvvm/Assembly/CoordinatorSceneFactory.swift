@@ -16,13 +16,5 @@ final class CoordinatorSceneFactory {
             homeView: homeSceneFactory.makeHomeView()
         )
     }
-
-    func makeHomeCoordinatorView() -> HomeCoordinatorView {
-
-        let sceneFactory = HomeSceneFactory(appContainer: appContainer)
-
-        return HomeCoordinatorView(
-            homeView: sceneFactory.makeHomeView()
-        )
-    }
+    
 }

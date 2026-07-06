@@ -23,6 +23,12 @@ struct MainTabView: View {
             .tabItem {
                 Label("Cart", systemImage: "cart")
             }
+            NavigationStack {
+                Text("Wishlist")
+            }
+            .tabItem {
+                Label("Wishlist", systemImage: "heart")
+            }
 
             NavigationStack {
                 Text("Account")
