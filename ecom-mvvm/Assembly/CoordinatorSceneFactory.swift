@@ -9,10 +9,15 @@ final class CoordinatorSceneFactory {
     }
     
     func makeMainTabView() -> MainTabView {
-
-        let homeSceneFactory = HomeSceneFactory(appContainer: appContainer)
-
         return MainTabView(
+            coordinatSceneFactory: self
+        )
+    }
+    
+    func makeHomeCoordinatorView() -> HomeCoordinatorView {
+        let homeSceneFactory = HomeSceneFactory(appContainer: appContainer)
+        
+        return HomeCoordinatorView(
             homeView: homeSceneFactory.makeHomeView()
         )
     }

@@ -1,11 +1,11 @@
 import SwiftUI
 
 struct MainTabView: View {
-    let homeView: ProductListView
+    let coordinatSceneFactory: CoordinatorSceneFactory
 
     var body: some View {
         TabView {
-            HomeCoordinatorView(homeView: homeView)
+            coordinatSceneFactory.makeHomeCoordinatorView()
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
