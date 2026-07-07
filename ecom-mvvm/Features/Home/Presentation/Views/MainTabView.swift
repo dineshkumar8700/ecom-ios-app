@@ -30,10 +30,8 @@ struct MainTabView: View {
                 Label("Cart", systemImage: "cart")
             }
             NavigationStack {
-                Text("Wishlist")
-                PrimaryButton(label: "Wishlist") {
-                    print("Wishlist Button")
-                }
+                coordinatSceneFactory.makeWishlistView()
+            
             }
             .tabItem {
                 Label("Wishlist", systemImage: "heart")

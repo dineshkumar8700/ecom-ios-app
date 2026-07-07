@@ -4,6 +4,7 @@ import SwiftUI
 struct HomeCoordinatorView: View {
 
     let homeView: ProductListView
+    let wishlistRepository: WishlistRepositoryProtocol
 
     @StateObject
     private var coordinator = HomeCoordinator()

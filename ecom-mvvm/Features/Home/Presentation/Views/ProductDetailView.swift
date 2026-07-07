@@ -39,6 +39,7 @@ struct BuyButton: View {
 
 struct ProductDetailView: View {
     let product: Product
+
     @EnvironmentObject var coordinator: HomeCoordinator
     @State var isPresent: Bool = false
     
@@ -60,10 +61,19 @@ struct ProductDetailView: View {
                     BuyButton(price: product.price)
                     Spacer()
                 }
-            }
+            }.buttonStyle(.plain)
+            
+            Button {
+//                wishlistRepository.add(product: product)
+            } label: {
+                HStack {
+                    Image(
+                        systemName: "heart"
+                    )
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.vertical, 10)
 
-            Button("Open Sheet") {
-                coordinator.present(.Settings)
+                }
             }
             
             Spacer()
@@ -72,3 +82,4 @@ struct ProductDetailView: View {
         
     }
 }
+	

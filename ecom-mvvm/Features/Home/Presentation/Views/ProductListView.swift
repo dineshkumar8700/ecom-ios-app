@@ -129,7 +129,7 @@ struct ErrorView: View {
 }
 
 struct ProductListView: View {
-    var vm: ProductListViewModel
+    @ObservedObject var vm: ProductListViewModel
 
     var body: some View {
         let load = {
@@ -147,7 +147,10 @@ struct ProductListView: View {
                 ErrorView(retry: load)
             }
             else {
-                ProductList(products: vm.state.products, onRefresh: refresh)
+                ProductList(
+                    products: vm.state.products,
+                    onRefresh: refresh,
+                )
             }
             
         }

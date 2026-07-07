@@ -2,14 +2,21 @@ import Foundation
 import Combine
 
 @MainActor
-@Observable
-class ProductListViewModel {
-    private(set) var state = ProductListState()
+class ProductListViewModel: ObservableObject {
+    @Published private(set) var state = ProductListState()
     
-    private let fetchProductUsecase: FetchProductUseCaseProtocol
+    private var fetchProductUsecase: FetchProductUseCaseProtocol
+    var store: WishlistStore
+    private var toggleWishlistUseCase: ToggleWishlistUseCase
     
-    init(fetchProductUsecase: FetchProductUseCaseProtocol) {
+    init(
+        fetchProductUsecase: FetchProductUseCaseProtocol,
+        store: WishlistStore,
+        toggleWishlistUseCase: ToggleWishlistUseCase
+    ) {
         self.fetchProductUsecase = fetchProductUsecase
+        self.store = store
+        self.toggleWishlistUseCase = toggleWishlistUseCase
     }
     
     private func fetchProducts() async {
@@ -33,7 +40,6 @@ class ProductListViewModel {
         
         do {
             state.products = try await fetchProductUsecase.execute()
-//            state.products = []
         } catch {
             state.error = error.localizedDescription
         }
@@ -47,5 +53,13 @@ class ProductListViewModel {
             await self.refreshProducts()
         }
     
+    }
+    
+    func isWishlisted(_ product: Product) -> Bool {
+        store.contains(product)
+    }
+
+    func toggle(_ product: Product) async {
+        try? await toggleWishlistUseCase.execute(product)
     }
 }

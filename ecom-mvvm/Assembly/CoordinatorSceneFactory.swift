@@ -18,8 +18,19 @@ final class CoordinatorSceneFactory {
         let homeSceneFactory = HomeSceneFactory(appContainer: appContainer)
         
         return HomeCoordinatorView(
-            homeView: homeSceneFactory.makeHomeView()
+            homeView: homeSceneFactory.makeHomeView(),
+            wishlistRepository: appContainer.wishlistRepository
         )
+    }
+    
+    func makeWishlistView() -> WishListView {
+
+        let vm = WishlistViewModel(
+            store: appContainer.wishlistStore,
+            fetchWishlist: appContainer.fetchWishlistUseCase
+        )
+
+        return WishListView(vm: vm)
     }
     
 }
