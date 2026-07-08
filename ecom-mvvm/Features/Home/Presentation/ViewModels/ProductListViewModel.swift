@@ -6,8 +6,8 @@ class ProductListViewModel: ObservableObject {
     @Published private(set) var state = ProductListState()
     
     private var fetchProductUsecase: FetchProductUseCaseProtocol
-    var wishlistStore: WishlistStore
-    private var toggleWishlistUseCase: ToggleWishlistUseCase
+    let wishlistStore: WishlistStore
+    private let toggleWishlistUseCase: ToggleWishlistUseCase
     
     init(
         fetchProductUsecase: FetchProductUseCaseProtocol,
