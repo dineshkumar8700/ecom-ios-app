@@ -1,4 +1,5 @@
 import SwiftUI
+import FirebaseAnalytics
 
 struct MainTabView: View {
     let coordinatSceneFactory: CoordinatorSceneFactory

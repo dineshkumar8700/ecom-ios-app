@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		711A39872FF78B41000D645F /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 711A39862FF78B41000D645F /* Nimble */; };
+		711A39CB2FFE692E000D645F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 711A39CA2FFE692E000D645F /* FirebaseAnalytics */; };
 		716723DF2FF22CCF008F760C /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 716723DE2FF22CCF008F760C /* Nuke */; };
 		716723E12FF22CD2008F760C /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 716723E02FF22CD2008F760C /* NukeUI */; };
 /* End PBXBuildFile section */
@@ -77,6 +78,7 @@
 			files = (
 				716723DF2FF22CCF008F760C /* Nuke in Frameworks */,
 				716723E12FF22CD2008F760C /* NukeUI in Frameworks */,
+				711A39CB2FFE692E000D645F /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +143,7 @@
 			packageProductDependencies = (
 				716723DE2FF22CCF008F760C /* Nuke */,
 				716723E02FF22CD2008F760C /* NukeUI */,
+				711A39CA2FFE692E000D645F /* FirebaseAnalytics */,
 			);
 			productName = "ecom-mvvm";
 			productReference = 716723A02FEBB3B9008F760C /* ecom-mvvm.app */;
@@ -199,6 +202,7 @@
 			packageReferences = (
 				716723DC2FF22BD1008F760C /* XCRemoteSwiftPackageReference "Nuke" */,
 				711A39852FF78B41000D645F /* XCRemoteSwiftPackageReference "Nimble" */,
+				711A39C92FFE692E000D645F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 716723A12FEBB3B9008F760C /* Products */;
@@ -548,6 +552,14 @@
 				kind = branch;
 			};
 		};
+		711A39C92FFE692E000D645F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.15.0;
+			};
+		};
 		716723DC2FF22BD1008F760C /* XCRemoteSwiftPackageReference "Nuke" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/Nuke";
@@ -563,6 +575,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 711A39852FF78B41000D645F /* XCRemoteSwiftPackageReference "Nimble" */;
 			productName = Nimble;
+		};
+		711A39CA2FFE692E000D645F /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 711A39C92FFE692E000D645F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
 		};
 		716723DE2FF22CCF008F760C /* Nuke */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -74,6 +74,9 @@ struct ProductDetailRow: View {
     
     var body: some View {
         Button {
+            vm.analytics.logEvent(name: "prodcut_tapped", parameters: [
+                "product_id": product.id, "product_title": product.title
+            ])
             coordinator.push(.productDetail(product: product))
         } label: {
             HStack {

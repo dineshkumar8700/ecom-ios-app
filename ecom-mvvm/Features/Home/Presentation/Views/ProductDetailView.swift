@@ -41,7 +41,6 @@ struct ProductDetailView: View {
     let product: Product
 
     @EnvironmentObject var coordinator: HomeCoordinator
-//    @EnvironmentObject var store: WishlistStore
     
     var body: some View {
         

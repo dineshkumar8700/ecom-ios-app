@@ -8,15 +8,18 @@ class ProductListViewModel: ObservableObject {
     private var fetchProductUsecase: FetchProductUseCaseProtocol
     let wishlistStore: WishlistStore
     private let toggleWishlistUseCase: ToggleWishlistUseCase
+    let analytics: AnalyticsService
     
     init(
         fetchProductUsecase: FetchProductUseCaseProtocol,
         wishlistStore: WishlistStore,
-        toggleWishlistUseCase: ToggleWishlistUseCase
+        toggleWishlistUseCase: ToggleWishlistUseCase,
+        analytics: AnalyticsService
     ) {
         self.fetchProductUsecase = fetchProductUsecase
         self.wishlistStore = wishlistStore
         self.toggleWishlistUseCase = toggleWishlistUseCase
+        self.analytics = analytics
     }
     
     private func fetchProducts() async {
