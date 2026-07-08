@@ -70,8 +70,7 @@ struct ProductDetailRow: View {
     let vm: ProductListViewModel
     
     @EnvironmentObject var coordinator: HomeCoordinator
-    @EnvironmentObject
-    private var wishlistStore: WishlistStore
+    @EnvironmentObject var store: WishlistStore
     
     var body: some View {
         Button {
@@ -91,7 +90,7 @@ struct ProductDetailRow: View {
                     } label: {
                         HStack {
                             Image(
-                                systemName: wishlistStore.contains(product)
+                                systemName: store.contains(product)
                                     ? "heart.fill"
                                     : "heart"
                             )
@@ -111,13 +110,15 @@ struct ProductList: View {
     let onRefresh: () async -> Void
     
     var body: some View {
-        Text("Product List")
-            .font(.title)
-            .fontWeight(.bold)
+        List {
+            Text("Product List")
+                .font(.title)
+                .fontWeight(.bold)
+            
+            ForEach(vm.state.products) {
+                ProductDetailRow(product: $0, vm: vm)
+            }
         
-        List(vm.state.products) { product in
-            ProductDetailRow(product: product, vm: vm)
-
         }
         .listStyle(.plain)
         .refreshable {

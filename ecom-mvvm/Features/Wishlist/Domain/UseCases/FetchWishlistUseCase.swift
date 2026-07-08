@@ -1,3 +1,5 @@
+import Foundation
+
 final class FetchWishlistUseCase {
 
     let repository: WishlistRepositoryProtocol
