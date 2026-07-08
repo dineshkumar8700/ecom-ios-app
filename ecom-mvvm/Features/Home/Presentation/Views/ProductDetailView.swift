@@ -41,7 +41,7 @@ struct ProductDetailView: View {
     let product: Product
 
     @EnvironmentObject var coordinator: HomeCoordinator
-    @State var isPresent: Bool = false
+//    @EnvironmentObject var store: WishlistStore
     
     var body: some View {
         
@@ -63,18 +63,6 @@ struct ProductDetailView: View {
                 }
             }.buttonStyle(.plain)
             
-            Button {
-//                wishlistRepository.add(product: product)
-            } label: {
-                HStack {
-                    Image(
-                        systemName: "heart"
-                    )
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.vertical, 10)
-
-                }
-            }
             
             Spacer()
         }

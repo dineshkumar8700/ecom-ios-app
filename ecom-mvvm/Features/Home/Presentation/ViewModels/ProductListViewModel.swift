@@ -6,16 +6,16 @@ class ProductListViewModel: ObservableObject {
     @Published private(set) var state = ProductListState()
     
     private var fetchProductUsecase: FetchProductUseCaseProtocol
-    var store: WishlistStore
+    var wishlistStore: WishlistStore
     private var toggleWishlistUseCase: ToggleWishlistUseCase
     
     init(
         fetchProductUsecase: FetchProductUseCaseProtocol,
-        store: WishlistStore,
+        wishlistStore: WishlistStore,
         toggleWishlistUseCase: ToggleWishlistUseCase
     ) {
         self.fetchProductUsecase = fetchProductUsecase
-        self.store = store
+        self.wishlistStore = wishlistStore
         self.toggleWishlistUseCase = toggleWishlistUseCase
     }
     
@@ -56,7 +56,7 @@ class ProductListViewModel: ObservableObject {
     }
     
     func isWishlisted(_ product: Product) -> Bool {
-        store.contains(product)
+        wishlistStore.contains(product)
     }
 
     func toggle(_ product: Product) async {

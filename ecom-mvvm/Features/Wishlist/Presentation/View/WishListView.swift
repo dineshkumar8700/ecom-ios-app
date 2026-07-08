@@ -2,35 +2,43 @@ import Foundation
 import SwiftUI
 
 struct WishListView: View {
-    var vm: WishlistViewModel
-    
+    @ObservedObject var store: WishlistStore
+    let vm: WishlistViewModel
+
     var body: some View {
-        Text("Wishlist")
-            .font(.title)
-            .fontWeight(.bold)
-        
-        List(vm.wishlist) { product in
-            HStack {
-                Text(product.title)
-                
-                Spacer()
-                
-                Button {
-                    
-                } label: {
-                    Image(systemName: "trash")
-                        .frame(width: 14, height: 14)
-                        .foregroundStyle(.red)
-                }
-                .buttonStyle(.plain)
+        VStack {
+            Text("Wishlist")
+                .font(.title)
+                .fontWeight(.bold)
             
+            if(store.products.isEmpty) {
+                Text("No items in the wishlist")
+            } else {
+                List(store.products) { product in
+                    HStack {
+                        Text(product.title)
+
+                        Spacer()
+
+                        Button {
+                            Task {
+                                await vm.remove(product)
+                            }
+                        } label: {
+                            Image(systemName: "trash")
+                                .frame(width: 14, height: 14)
+                                .foregroundStyle(.red)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .listStyle(.plain)
             }
+
+
         }
-        .listStyle(.plain)
-        .task() {
+        .task {
             await vm.load()
         }
     }
-        
-        
 }

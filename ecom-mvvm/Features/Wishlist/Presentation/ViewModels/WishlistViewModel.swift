@@ -2,24 +2,24 @@ import Foundation
 import Combine
 
 @MainActor
-final class WishlistViewModel: ObservableObject {
+final class WishlistViewModel {
 
-    let store: WishlistStore
-    let fetchWishlist: FetchWishlistUseCase
+    private let fetchWishlist: FetchWishlistUseCase
+    private let toggleWishlist: ToggleWishlistUseCase
 
     init(
-        store: WishlistStore,
-        fetchWishlist: FetchWishlistUseCase
+        fetchWishlist: FetchWishlistUseCase,
+        toggleWishlist: ToggleWishlistUseCase
     ) {
-        self.store = store
         self.fetchWishlist = fetchWishlist
-    }
-
-    var wishlist: [Product] {
-        store.products
+        self.toggleWishlist = toggleWishlist
     }
 
     func load() async {
         try? await fetchWishlist.execute()
+    }
+
+    func remove(_ product: Product) async {
+        try? await toggleWishlist.execute(product)
     }
 }

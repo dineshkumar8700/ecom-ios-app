@@ -67,8 +67,11 @@ struct ProductPrice: View {
 
 struct ProductDetailRow: View {
     let product: Product
+    let vm: ProductListViewModel
     
     @EnvironmentObject var coordinator: HomeCoordinator
+    @EnvironmentObject
+    private var wishlistStore: WishlistStore
     
     var body: some View {
         Button {
@@ -80,6 +83,23 @@ struct ProductDetailRow: View {
                     ProductTitle(title: product.title)
                     ProductRating(rating: product.rating)
                     ProductPrice(price: product.price)
+                    Button {
+                        Task {
+                            await vm.toggle(product)
+                        }
+                        
+                    } label: {
+                        HStack {
+                            Image(
+                                systemName: wishlistStore.contains(product)
+                                    ? "heart.fill"
+                                    : "heart"
+                            )
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.vertical, 10)
+
+                        }
+                    }.buttonStyle(.plain)
                 }
             }
         }
@@ -87,7 +107,7 @@ struct ProductDetailRow: View {
 }
 
 struct ProductList: View {
-    let products: [Product]
+    let vm: ProductListViewModel
     let onRefresh: () async -> Void
     
     var body: some View {
@@ -95,8 +115,8 @@ struct ProductList: View {
             .font(.title)
             .fontWeight(.bold)
         
-        List(products) { product in
-            ProductDetailRow(product: product)
+        List(vm.state.products) { product in
+            ProductDetailRow(product: product, vm: vm)
 
         }
         .listStyle(.plain)
@@ -148,7 +168,7 @@ struct ProductListView: View {
             }
             else {
                 ProductList(
-                    products: vm.state.products,
+                    vm: vm,
                     onRefresh: refresh,
                 )
             }
@@ -157,5 +177,6 @@ struct ProductListView: View {
         .task {
             await load()
         }
+        .environmentObject(vm.wishlistStore)
     }
 }

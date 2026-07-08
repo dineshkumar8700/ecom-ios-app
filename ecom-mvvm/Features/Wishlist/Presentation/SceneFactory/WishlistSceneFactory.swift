@@ -10,13 +10,12 @@ class WishlistSceneFactory {
     func makeWishlistView() -> WishListView {
 
         let wishlistViewModel = WishlistViewModel(
-            store: appContainer.wishlistStore,
-            fetchWishlist: FetchWishlistUseCase(
-                repository: appContainer.wishlistRepository,
-                store: appContainer.wishlistStore
-            )
-        )
+            fetchWishlist: appContainer.fetchWishlistUseCase,
+            toggleWishlist: appContainer.toggleWishlistUseCase)
 
-        return WishListView(vm: wishlistViewModel)
+        return WishListView(
+            store: appContainer.wishlistStore,
+            vm: wishlistViewModel
+        )
     }
 }

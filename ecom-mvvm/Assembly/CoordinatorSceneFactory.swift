@@ -26,11 +26,11 @@ final class CoordinatorSceneFactory {
     func makeWishlistView() -> WishListView {
 
         let vm = WishlistViewModel(
-            store: appContainer.wishlistStore,
-            fetchWishlist: appContainer.fetchWishlistUseCase
+            fetchWishlist: appContainer.fetchWishlistUseCase,
+            toggleWishlist: appContainer.toggleWishlistUseCase
         )
 
-        return WishListView(vm: vm)
+        return WishListView(store: appContainer.wishlistStore, vm: vm)
     }
     
 }

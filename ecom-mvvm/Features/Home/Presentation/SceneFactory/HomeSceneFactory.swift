@@ -13,14 +13,13 @@ final class HomeSceneFactory {
         let service = ProductServiceImpl(network: appContainer.network)
         let repository = ProductRepositoryImpl(service: service)
         let useCase = FetchProductUseCase(repository: repository)
+        
         let viewModel = ProductListViewModel(
             fetchProductUsecase: useCase,
-            store: appContainer.wishlistStore,
+            wishlistStore: appContainer.wishlistStore,
             toggleWishlistUseCase: appContainer.toggleWishlistUseCase
         )
         
-        return ProductListView(
-            vm: viewModel
-        )
+        return ProductListView(vm: viewModel)
     }
 }

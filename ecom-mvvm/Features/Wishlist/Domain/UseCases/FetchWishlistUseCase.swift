@@ -10,7 +10,6 @@ final class FetchWishlistUseCase {
 
     func execute() async throws {
         let products = try await repository.fetchWishlist()
-        print(products)
         store.setProducts(products)
     }
 }
