@@ -1,4 +1,5 @@
 import Foundation
+import Resolver
 
 class WishlistSceneFactory {
     private let appContainer: AppContainer
@@ -10,11 +11,12 @@ class WishlistSceneFactory {
     func makeWishlistView() -> WishListView {
 
         let wishlistViewModel = WishlistViewModel(
-            fetchWishlist: appContainer.fetchWishlistUseCase,
-            toggleWishlist: appContainer.toggleWishlistUseCase)
+            fetchWishlist: Resolver.resolve(),
+            toggleWishlist: Resolver.resolve()
+        )
 
         return WishListView(
-            store: appContainer.wishlistStore,
+            store: Resolver.resolve(),
             vm: wishlistViewModel
         )
     }
