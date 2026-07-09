@@ -3,8 +3,6 @@ import FirebaseCore
 
 @main
 struct ecom_mvvmApp: App {
-
-    private let appContainer = AppContainer()
     
     init() {
         FirebaseApp.configure()
@@ -12,7 +10,7 @@ struct ecom_mvvmApp: App {
 
     var body: some Scene {
         WindowGroup {
-            CoordinatorSceneFactory(appContainer: appContainer)
+            CoordinatorSceneFactory()
                 .makeMainTabView()
         }
     }

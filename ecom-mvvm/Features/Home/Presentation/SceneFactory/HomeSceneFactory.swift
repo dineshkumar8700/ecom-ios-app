@@ -2,13 +2,7 @@ import Foundation
 import Resolver
 
 final class HomeSceneFactory {
-
-    private let appContainer: AppContainer
-
-    init(appContainer: AppContainer) {
-        self.appContainer = appContainer
-    }
-
+    
     func makeHomeView() -> ProductListView {
 
         let service = ProductServiceImpl(network: Resolver.resolve())
