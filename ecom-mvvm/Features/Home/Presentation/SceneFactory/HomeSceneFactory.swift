@@ -17,8 +17,7 @@ final class HomeSceneFactory {
         let viewModel = ProductListViewModel(
             fetchProductUsecase: useCase,
             wishlistStore: appContainer.wishlistStore,
-            toggleWishlistUseCase: appContainer.toggleWishlistUseCase,
-            analytics: appContainer.analytics
+            toggleWishlistUseCase: appContainer.toggleWishlistUseCase
         )
         
         return ProductListView(vm: viewModel)

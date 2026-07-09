@@ -1,25 +1,24 @@
 import Foundation
 import Combine
+import Resolver
 
 @MainActor
 class ProductListViewModel: ObservableObject {
     @Published private(set) var state = ProductListState()
+    @Injected var analytics: AnalyticsService
     
     private var fetchProductUsecase: FetchProductUseCaseProtocol
     let wishlistStore: WishlistStore
     private let toggleWishlistUseCase: ToggleWishlistUseCase
-    let analytics: AnalyticsService
     
     init(
         fetchProductUsecase: FetchProductUseCaseProtocol,
         wishlistStore: WishlistStore,
         toggleWishlistUseCase: ToggleWishlistUseCase,
-        analytics: AnalyticsService
     ) {
         self.fetchProductUsecase = fetchProductUsecase
         self.wishlistStore = wishlistStore
         self.toggleWishlistUseCase = toggleWishlistUseCase
-        self.analytics = analytics
     }
     
     private func fetchProducts() async {

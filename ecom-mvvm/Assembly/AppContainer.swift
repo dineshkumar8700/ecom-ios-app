@@ -1,4 +1,5 @@
 import Foundation
+import Resolver
 
 final class AppContainer {
 
@@ -21,6 +22,4 @@ final class AppContainer {
     init() {
         wishlistRepository = WishlistRepository(service: WishlistService())
     }
-    
-    let analytics: AnalyticsService = FirebaseAnalyticsService()
 }
