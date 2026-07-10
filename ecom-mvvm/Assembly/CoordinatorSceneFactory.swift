@@ -19,4 +19,17 @@ final class CoordinatorSceneFactory {
         return wishlistSceneFactory.makeWishlistView()
     }
     
+    func handleDeepLink(_ deepLink: DeepLink) {
+        switch deepLink {
+        
+        case .product(let id):
+            print("I am in .product with id: \(id)")
+            break
+        
+        case .dashboard:
+            self.makeWishlistView()
+            break
+        }
+    }
+    
 }

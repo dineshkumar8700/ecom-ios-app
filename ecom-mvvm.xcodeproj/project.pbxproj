@@ -53,6 +53,13 @@
 			);
 			target = 716723F42FF2C2E0008F760C /* ecom-mvvmTests */;
 		};
+		711A39F42FFFF465000D645F /* Exceptions for "ecom-mvvm" folder in "ecom-mvvm" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 7167239F2FEBB3B9008F760C /* ecom-mvvm */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -67,6 +74,9 @@
 		};
 		716723A22FEBB3B9008F760C /* ecom-mvvm */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				711A39F42FFFF465000D645F /* Exceptions for "ecom-mvvm" folder in "ecom-mvvm" target */,
+			);
 			path = "ecom-mvvm";
 			sourceTree = "<group>";
 		};
@@ -396,6 +406,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ecom-mvvm/Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -439,6 +450,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ecom-mvvm/Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

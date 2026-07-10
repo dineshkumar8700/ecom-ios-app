@@ -4,13 +4,11 @@ import FirebaseCore
 @main
 struct ecom_mvvmApp: App {
     
-    init() {
-        FirebaseApp.configure()
-    }
-
+    let coordinatorSceneFactory = CoordinatorSceneFactory()
+    
     var body: some Scene {
         WindowGroup {
-            CoordinatorSceneFactory()
+            coordinatorSceneFactory
                 .makeMainTabView()
         }
     }
