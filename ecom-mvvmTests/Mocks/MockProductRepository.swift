@@ -9,4 +9,8 @@ class MockProductRepository: ProductRepository {
         return try result.get()
     }
     
+    func getProduct(id: Int) async throws -> Product {
+        return try result.get()[id]
+    }
+    
 }

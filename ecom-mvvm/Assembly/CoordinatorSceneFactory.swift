@@ -9,27 +9,19 @@ final class CoordinatorSceneFactory {
     func makeHomeCoordinatorView() -> HomeCoordinatorView {
         let homeSceneFactory = HomeSceneFactory()
         let homeView = homeSceneFactory.makeHomeView()
+        let productSceneFactory = ProductDetailScneFsctory()
         
-        return HomeCoordinatorView(homeView: homeView)
+        return HomeCoordinatorView(
+            homeView: homeView,
+            productDetailViewModel: productSceneFactory
+                .makeProductDetailViewModel()
+        )
     }
     
     func makeWishlistView() -> WishListView {
         let wishlistSceneFactory = WishlistSceneFactory()
         
         return wishlistSceneFactory.makeWishlistView()
-    }
-    
-    func handleDeepLink(_ deepLink: DeepLink) {
-        switch deepLink {
-        
-        case .product(let id):
-            print("I am in .product with id: \(id)")
-            break
-        
-        case .dashboard:
-            self.makeWishlistView()
-            break
-        }
     }
     
 }

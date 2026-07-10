@@ -8,10 +8,10 @@ struct CheckoutView : View {
 }
 
 struct DisplayText: View {
-    let text: String
+    let text: String?
     var body: some View {
         
-        Text(text)
+        Text(text!)
             .frame(maxWidth: .infinity, alignment: .leading)
             .font(.system(size: 14))
             .bold()
@@ -20,12 +20,12 @@ struct DisplayText: View {
 }
 
 struct BuyButton: View {
-    let price: Double
+    let price: Double?
     
     var body: some View {
             Text("""
                 Buy Now 
-                at $\(price, specifier: "%.2f")
+                at $\(price!, specifier: "%.2f")
                 """)
                 .frame(alignment: .leading)
                 .padding(.horizontal, 14)
@@ -38,35 +38,43 @@ struct BuyButton: View {
 }
 
 struct ProductDetailView: View {
-    let product: Product
-
+    let id: Int
+    @ObservedObject var vm: ProductDetailViewModel
+    
     @EnvironmentObject var coordinator: HomeCoordinator
     
     var body: some View {
         
         VStack {
-            RemoteImage(url: URL(string: product.image)!)
-                .frame(maxWidth: .infinity, maxHeight: 300)
-                .cornerRadius(10)
-                .padding(10)
-            
-            DisplayText(text: product.title)
-            DisplayText(text: "$\(product.price)")
-            
-            Button {
-                coordinator.push(.checkout)
-            } label: {
-                HStack {
-                    BuyButton(price: product.price)
-                    Spacer()
-                }
-            }.buttonStyle(.plain)
-            
-            
-            Spacer()
+            if(vm.isLoading) {
+                ProgressView()
+            } else if let product = vm.product {
+                RemoteImage(url: URL(string: product.image)!)
+                    .frame(maxWidth: .infinity, maxHeight: 300)
+                    .cornerRadius(10)
+                    .padding(10)
+                
+                DisplayText(text: product.title)
+                DisplayText(text: "$\(product.price)")
+                
+                Button {
+                    coordinator.push(.checkout)
+                } label: {
+                    HStack {
+                        BuyButton(price: product.price)
+                        Spacer()
+                    }
+                }.buttonStyle(.plain)
+                
+                Spacer()
+            } else {
+                Text("Product Not Found")
+            }
         }
         .padding()
-        
+        .task {
+            await vm.send(.appear(id: id))
+        }
     }
 }
 	

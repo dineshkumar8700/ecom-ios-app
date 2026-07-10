@@ -4,6 +4,7 @@ import SwiftUI
 struct HomeCoordinatorView: View {
 
     let homeView: ProductListView
+    let productDetailViewModel: ProductDetailViewModel
 
     @StateObject
     private var coordinator = HomeCoordinator()
@@ -15,8 +16,11 @@ struct HomeCoordinatorView: View {
             homeView
                 .navigationDestination(for: HomeRoute.self) { route in
                     switch route {
-                    case .productDetail(let product):
-                        ProductDetailView(product: product)
+                    case .productDetail(let id):
+                        ProductDetailView(
+                            id: id ,
+                            vm: productDetailViewModel
+                        )
 
                     case .checkout:
                         CheckoutView()

@@ -77,7 +77,7 @@ struct ProductDetailRow: View {
             vm.analytics.logEvent(name: "prodcut_tapped", parameters: [
                 "product_id": product.id, "product_title": product.title
             ])
-            coordinator.push(.productDetail(product: product))
+            coordinator.push(.productDetail(id: product.id))
         } label: {
             HStack {
                 ProductImage(image: product.image)

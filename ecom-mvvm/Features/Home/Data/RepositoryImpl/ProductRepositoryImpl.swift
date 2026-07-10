@@ -1,10 +1,3 @@
-//
-//  ProductRepoImpl.swift
-//  ecom-mvvm
-//
-//  Created by Dinesh Kumar on 24/06/26.
-//
-
 import Foundation
 
 class ProductRepositoryImpl: ProductRepository{
@@ -16,6 +9,11 @@ class ProductRepositoryImpl: ProductRepository{
     
     func getProducts() async throws -> [Product] {
         return try await service.fetchProducts()
+    }
+    
+    func getProduct(id: Int) async throws -> Product {
+        let products = try await service.fetchProducts()
+        return products.first(where: {$0.id == id})!
     }
     
 }
