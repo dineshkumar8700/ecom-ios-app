@@ -19,6 +19,11 @@ class ProductListViewModel: ObservableObject {
         self.fetchProductUsecase = fetchProductUsecase
         self.wishlistStore = wishlistStore
         self.toggleWishlistUseCase = toggleWishlistUseCase
+        print("✅ ProductListViewModel:", ObjectIdentifier(self))
+    }
+
+    deinit {
+        print("❌ ProductListViewModel:", ObjectIdentifier(self))
     }
     
     private func fetchProducts() async {

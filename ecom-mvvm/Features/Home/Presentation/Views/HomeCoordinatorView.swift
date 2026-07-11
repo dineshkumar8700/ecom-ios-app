@@ -3,24 +3,19 @@ import SwiftUI
 
 struct HomeCoordinatorView: View {
 
-    let homeView: ProductListView
-    let productDetailViewModel: ProductDetailViewModel
-
-    @StateObject
-    private var coordinator = HomeCoordinator()
+    let homeSceneFactory: HomeSceneFactory
+    let productDetailSceneFactory: ProductDetailSceneFactory
+    @ObservedObject var coordinator: HomeCoordinator
 
     var body: some View {
 
         NavigationStack(path: $coordinator.path) {
 
-            homeView
+            homeSceneFactory.makeHomeView()
                 .navigationDestination(for: HomeRoute.self) { route in
                     switch route {
                     case .productDetail(let id):
-                        ProductDetailView(
-                            id: id ,
-                            vm: productDetailViewModel
-                        )
+                        productDetailSceneFactory.makeProductDetailView(id: id)
 
                     case .checkout:
                         CheckoutView()

@@ -1,20 +1,20 @@
 import Foundation
+import SwiftUI
 
 final class CoordinatorSceneFactory {
     
     func makeMainTabView() -> MainTabView {
-        return MainTabView(coordinatSceneFactory: self)
+        return MainTabView(csf: self)
     }
     
-    func makeHomeCoordinatorView() -> HomeCoordinatorView {
+    func makeHomeCoordinatorView(coordinator: HomeCoordinator) -> HomeCoordinatorView {
         let homeSceneFactory = HomeSceneFactory()
-        let homeView = homeSceneFactory.makeHomeView()
-        let productSceneFactory = ProductDetailScneFsctory()
+        let productSceneFactory = ProductDetailSceneFactory()
         
         return HomeCoordinatorView(
-            homeView: homeView,
-            productDetailViewModel: productSceneFactory
-                .makeProductDetailViewModel()
+            homeSceneFactory: homeSceneFactory,
+            productDetailSceneFactory: productSceneFactory,
+            coordinator: coordinator
         )
     }
     
@@ -23,5 +23,4 @@ final class CoordinatorSceneFactory {
         
         return wishlistSceneFactory.makeWishlistView()
     }
-    
 }

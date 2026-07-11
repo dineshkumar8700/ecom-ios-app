@@ -9,13 +9,20 @@ enum Tab: Hashable {
 
 struct MainTabView: View {
     let coordinatSceneFactory: CoordinatorSceneFactory
-    @State var selectedTab: Tab = .home
     
+    @State var selectedTab: Tab = .home
+    @StateObject var coordinator = HomeCoordinator()
+    
+    init(csf: CoordinatorSceneFactory) {
+        self.coordinatSceneFactory = csf
+    }
+
     var parser = DeepLinkParser()
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            coordinatSceneFactory.makeHomeCoordinatorView()
+            coordinatSceneFactory
+                .makeHomeCoordinatorView(coordinator: coordinator)
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
@@ -62,26 +69,17 @@ struct MainTabView: View {
             .tag(Tab.profile)
         }
         .onOpenURL { url in
-            print("Received URL:", url)
 
-            guard let deepLink = parser.parse(url: url) else {
-                print("Invalid deep link")
-                return
-            }
-
-            print("Parsed:", deepLink)
+            guard let deepLink = parser.parse(url: url) else { return }
             
             switch deepLink {
                 
-            case .product(id: 5):
-                selectedTab = .shop
-            case .dashboard:
-                selectedTab = .wishlist
-                
-            default:
+            case .product(let id):
                 selectedTab = .home
+                coordinator.push(.productDetail(id: id))
+            case .wishlist:
+                selectedTab = .wishlist
             }
-            
         }
     }
 }

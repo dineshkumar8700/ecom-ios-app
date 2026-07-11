@@ -20,8 +20,8 @@ struct DeepLinkParser {
             else { return nil }
             return .product(id: id)
         
-        case "dashboard":
-            return .dashboard
+        case "wishlist":
+            return .wishlist
             
         default :
             return nil
