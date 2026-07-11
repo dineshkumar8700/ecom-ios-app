@@ -4,7 +4,6 @@ import SwiftUI
 struct HomeCoordinatorView: View {
 
     let homeSceneFactory: HomeSceneFactory
-    let productDetailSceneFactory: ProductDetailSceneFactory
     @ObservedObject var coordinator: HomeCoordinator
 
     var body: some View {
@@ -15,10 +14,10 @@ struct HomeCoordinatorView: View {
                 .navigationDestination(for: HomeRoute.self) { route in
                     switch route {
                     case .productDetail(let id):
-                        productDetailSceneFactory.makeProductDetailView(id: id)
+                        homeSceneFactory.makeProductDetailView(id: id)
 
                     case .checkout:
-                        CheckoutView()
+                        homeSceneFactory.makeCheckoutView()
                     }
                 }
         }

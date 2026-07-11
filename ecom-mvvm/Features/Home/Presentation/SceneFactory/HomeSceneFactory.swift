@@ -4,10 +4,6 @@ import Resolver
 final class HomeSceneFactory {
     
     func makeHomeView() -> ProductListView {
-
-        let service = ProductServiceImpl(network: Resolver.resolve())
-        let repository = ProductRepositoryImpl(service: Resolver.resolve())
-        let useCase = FetchProductUseCase(repository: Resolver.resolve())
         
         let viewModel = ProductListViewModel(
             fetchProductUsecase: Resolver.resolve(),
@@ -16,5 +12,17 @@ final class HomeSceneFactory {
         )
         
         return ProductListView(vm: viewModel)
+    }
+    
+    func makeProductDetailView(id: Int) -> ProductDetailView {
+        
+        let useCase = FetchProductDetailUsecase(repository: Resolver.resolve())
+        let viewModel = ProductDetailViewModel(useCase: useCase)
+        
+        return ProductDetailView(id: id, vm: viewModel)
+    }
+    
+    func makeCheckoutView() -> CheckoutView {
+        CheckoutView()
     }
 }

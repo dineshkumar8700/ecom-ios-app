@@ -8,21 +8,20 @@ enum Tab: Hashable {
 }
 
 struct MainTabView: View {
-    let coordinatSceneFactory: CoordinatorSceneFactory
-    
     @State var selectedTab: Tab = .home
     @StateObject var coordinator = HomeCoordinator()
     
-    init(csf: CoordinatorSceneFactory) {
-        self.coordinatSceneFactory = csf
-    }
-
     var parser = DeepLinkParser()
+    
+    private let homeSceneFactory = HomeSceneFactory()
+    private let wishlistSceneFactory = WishlistSceneFactory()
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            coordinatSceneFactory
-                .makeHomeCoordinatorView(coordinator: coordinator)
+            HomeCoordinatorView(
+                homeSceneFactory: homeSceneFactory,
+                coordinator: coordinator
+            )
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
@@ -49,7 +48,7 @@ struct MainTabView: View {
                 Label("Cart", systemImage: "cart")
             }
             NavigationStack {
-                coordinatSceneFactory.makeWishlistView()
+                wishlistSceneFactory.makeWishlistView()
             
             }
             .tabItem {
