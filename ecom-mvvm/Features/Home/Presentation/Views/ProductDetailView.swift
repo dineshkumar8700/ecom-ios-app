@@ -2,8 +2,11 @@ import Foundation
 import SwiftUI
 
 struct CheckoutView : View {
+    
     var body: some View {
-        Text("Checkout")
+        VStack {
+            Text("Checkout")
+        }
     }
 }
 
@@ -39,9 +42,14 @@ struct BuyButton: View {
 
 struct ProductDetailView: View {
     let id: Int
-    @ObservedObject var vm: ProductDetailViewModel
     
+    @StateObject private var vm: ProductDetailViewModel
     @EnvironmentObject var coordinator: HomeCoordinator
+    
+    init(id: Int, useCase: FetchProductDetailUsecaseProtocol ) {
+        self.id = id
+        _vm = StateObject( wrappedValue: ProductDetailViewModel( useCase: useCase))
+    }
     
     var body: some View {
         
@@ -68,7 +76,7 @@ struct ProductDetailView: View {
                 
                 Spacer()
             } else {
-                Text("Product Not Found")
+                Text("Product Not Found: \(id)")
             }
         }
         .padding()

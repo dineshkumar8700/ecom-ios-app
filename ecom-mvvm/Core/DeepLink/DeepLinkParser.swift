@@ -6,10 +6,7 @@ struct DeepLinkParser {
             return nil
         }
         
-        print("URL: \(url)")
-        
         let components = url.pathComponents
-        print("URL COMPONENTS: \(components)")
         
         switch url.host {
             

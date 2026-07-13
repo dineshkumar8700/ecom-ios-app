@@ -20,11 +20,12 @@ final class HomeSceneFactory {
     }
     
     func makeProductDetailView(id: Int) -> ProductDetailView {
-        
-        let useCase = FetchProductDetailUsecase(repository: Resolver.resolve())
-        let viewModel = ProductDetailViewModel(useCase: useCase)
-        
-        return ProductDetailView(id: id, vm: viewModel)
+
+        let useCase = FetchProductDetailUsecase(
+            repository: Resolver.resolve()
+        )
+
+        return ProductDetailView(id: id, useCase: useCase)
     }
     
     func makeCheckoutView() -> CheckoutView {
