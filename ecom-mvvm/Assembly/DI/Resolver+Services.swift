@@ -25,7 +25,7 @@ extension Resolver {
         .scope(.application)
         
         register {
-            OAuthTokenService() as OAuthTokenServiceProtocol
+            OAuthTokenService(networkClient: resolve()) as OAuthTokenServiceProtocol
         }
         .scope(.application)
         

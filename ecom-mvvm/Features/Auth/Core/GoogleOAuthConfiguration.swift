@@ -14,5 +14,7 @@ enum GoogleOAuthConfiguration {
     static let responseType = "code"
 
     static let clientID = ProcessInfo.processInfo.environment["CLIENT_ID"]
+    
+    static let tokenEndpoint = URL(string: "https://oauth2.googleapis.com/token")!
         
 }
