@@ -15,6 +15,8 @@ struct MainTabView: View {
     
     private let homeSceneFactory = HomeSceneFactory()
     private let wishlistSceneFactory = WishlistSceneFactory()
+    private let authSceneFactory = AuthSceneFactory()
+    
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -57,10 +59,7 @@ struct MainTabView: View {
             .tag(Tab.wishlist)
 
             NavigationStack {
-                Text("Account")
-                PrimaryButton(label: "Account") {
-                    print("Account Button")
-                }
+                authSceneFactory.makeLoginView()
             }
             .tabItem {
                 Label("Account", systemImage: "person")

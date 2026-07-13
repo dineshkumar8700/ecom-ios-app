@@ -5,14 +5,20 @@ extension Resolver {
     public static func registerRepositories() {
         register {
             ProductRepositoryImpl(
-                service: Resolver.resolve()
+                service: resolve()
             ) as ProductRepository
         }
         
         register {
             WishlistRepository(
-                service: Resolver.resolve()
+                service: resolve()
             ) as WishlistRepositoryProtocol
+        }
+        
+        register {
+            GoogleAuthRepository(
+                service: resolve()
+            ) as GoogleAuthRepositoryProtocol
         }
     }
 }

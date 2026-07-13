@@ -12,5 +12,9 @@ extension Resolver {
             WishlistService() as WishlistServiceProtocol
         }
         .scope(.application)
+        
+        register {
+            GoogleOAuthService() as GoogleOAuthServiceProtocol
+        }
     }
 }

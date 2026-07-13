@@ -24,5 +24,9 @@ extension Resolver {
         }
         .scope(.application)
         
+        register {
+            LoginWithGoogleUseCase(repository: Resolver.resolve())
+        }
+        
     }
 }
