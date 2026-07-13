@@ -1,9 +1,6 @@
 import Foundation
 
-struct TokenRequest {
-
-    let code: String
-
+struct AuthorizationGrant {
+    let authorizationCode: String
     let codeVerifier: String
-
 }

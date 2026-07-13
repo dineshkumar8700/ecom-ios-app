@@ -1,5 +1,5 @@
 import Foundation
 
 protocol GoogleOAuthServiceProtocol {
-    func login()
+    func login() async throws -> AuthorizationGrant
 }

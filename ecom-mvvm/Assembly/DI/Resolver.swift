@@ -10,6 +10,5 @@ extension Resolver: ResolverRegistering {
         registerRepositories()
         regiserSharedState()
         registerUseCases()
-        regiserSessionStore()
     }
 }

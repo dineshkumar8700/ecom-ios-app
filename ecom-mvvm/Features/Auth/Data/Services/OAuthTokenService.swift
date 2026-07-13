@@ -1,8 +1,11 @@
-//
-//  OAuthTokenService.swift
-//  ecom-mvvm
-//
-//  Created by Dinesh Kumar on 13/07/26.
-//
-
 import Foundation
+
+final class OAuthTokenService: OAuthTokenServiceProtocol {
+
+    func exchange(authorizationGrant: AuthorizationGrant) async throws -> OAuthTokenResponse {
+
+        fatalError("Coming next")
+
+    }
+
+}

@@ -11,7 +11,10 @@ struct LoginView: View {
             Text("Welcome")
 
             Button("Continue with Google") {
-                viewModel.loginWithGoogle()
+                Task {
+                    await viewModel.loginWithGoogle()
+                }
+                
             }
         }
     }

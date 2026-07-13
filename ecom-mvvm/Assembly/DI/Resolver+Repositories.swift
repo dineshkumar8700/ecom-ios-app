@@ -20,5 +20,12 @@ extension Resolver {
                 service: resolve()
             ) as GoogleAuthRepositoryProtocol
         }
+        
+        register {
+            OAuthTokenRepository(
+                service: resolve()
+            ) as OAuthTokenRepositoryProtocol
+        }
+        .scope(.application)
     }
 }

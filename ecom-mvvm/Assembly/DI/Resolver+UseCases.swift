@@ -27,6 +27,12 @@ extension Resolver {
         register {
             LoginWithGoogleUseCase(repository: Resolver.resolve())
         }
+        .scope(.application)
+        
+        register {
+            ExchangeAuthorizationCodeUseCase(repository: Resolver.resolve())
+        }
+        .scope(.application)
         
     }
 }

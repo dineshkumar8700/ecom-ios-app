@@ -7,5 +7,10 @@ extension Resolver {
             WishlistStore()
         }
         .scope(.application)
+        
+        register {
+            SessionStore()
+        }
+        .scope(.application)
     }
 }

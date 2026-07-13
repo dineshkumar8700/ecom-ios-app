@@ -9,7 +9,14 @@ final class LoginViewModel: ObservableObject {
         self.loginUseCase = loginUseCase
     }
 
-    func loginWithGoogle() {
-        loginUseCase.execute()
+    func loginWithGoogle() async {
+        do {
+            let grant = try await loginUseCase.execute()
+            print("AUTH CODE: \(grant.authorizationCode)")
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+        
     }
 }

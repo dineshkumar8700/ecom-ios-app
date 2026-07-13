@@ -1,8 +1,21 @@
-//
-//  OAuthTokenRepository.swift
-//  ecom-mvvm
-//
-//  Created by Dinesh Kumar on 13/07/26.
-//
-
 import Foundation
+
+final class OAuthTokenRepository: OAuthTokenRepositoryProtocol {
+
+    private let service: OAuthTokenServiceProtocol
+
+    init(service: OAuthTokenServiceProtocol) {
+        self.service = service
+    }
+
+    func exchange(authorizationGrant: AuthorizationGrant) async throws -> OAuthToken {
+
+        let response = try await service.exchange(
+            authorizationGrant: authorizationGrant
+        )
+
+        return OAuthTokenMapper.toDomain(response)
+
+    }
+
+}

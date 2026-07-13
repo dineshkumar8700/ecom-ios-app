@@ -8,7 +8,7 @@ final class LoginWithGoogleUseCase {
         self.repository = repository
     }
 
-    func execute() {
-        repository.login()
+    func execute() async throws -> AuthorizationGrant {
+        return try await repository.login()
     }
 }

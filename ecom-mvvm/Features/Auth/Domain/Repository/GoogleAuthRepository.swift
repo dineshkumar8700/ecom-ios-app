@@ -1,6 +1,6 @@
 import Foundation
 
 protocol GoogleAuthRepositoryProtocol {
-    func login()
+    func login() async throws -> AuthorizationGrant
 }
 

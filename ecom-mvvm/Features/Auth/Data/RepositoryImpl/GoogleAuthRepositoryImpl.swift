@@ -8,7 +8,7 @@ final class GoogleAuthRepository: GoogleAuthRepositoryProtocol {
         self.service = service
     }
 
-    func login() {
-        service.login()
+    func login() async throws -> AuthorizationGrant {
+        return try await service.login()
     }
 }

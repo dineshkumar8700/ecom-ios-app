@@ -14,7 +14,21 @@ extension Resolver {
         .scope(.application)
         
         register {
-            GoogleOAuthService() as GoogleOAuthServiceProtocol
+            GoogleOAuthService(
+                authenticationSession: resolve()
+            ) as GoogleOAuthServiceProtocol
         }
+        
+        register {
+            AuthenticationSession() as AuthenticationSessionProtocol
+        }
+        .scope(.application)
+        
+        register {
+            OAuthTokenService() as OAuthTokenServiceProtocol
+        }
+        .scope(.application)
+        
+        
     }
 }
