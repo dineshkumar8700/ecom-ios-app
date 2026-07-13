@@ -3,7 +3,7 @@ import Resolver
 
 final class HomeSceneFactory {
     
-    func makeHomeView() -> ProductListView {
+    func makeHomeViewModel() -> ProductListViewModel {
         
         let viewModel = ProductListViewModel(
             fetchProductUsecase: Resolver.resolve(),
@@ -11,7 +11,12 @@ final class HomeSceneFactory {
             toggleWishlistUseCase: Resolver.resolve()
         )
         
-        return ProductListView(vm: viewModel)
+        return viewModel
+    }
+    
+    func makeHomeView(vm: ProductListViewModel) -> ProductListView {
+        
+        return ProductListView(vm: vm)
     }
     
     func makeProductDetailView(id: Int) -> ProductDetailView {

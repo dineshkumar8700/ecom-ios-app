@@ -19,8 +19,8 @@ struct MainTabView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             HomeCoordinatorView(
-                homeSceneFactory: homeSceneFactory,
-                coordinator: coordinator
+                coordinator: coordinator,
+                sceneFactory: homeSceneFactory
             )
                 .tabItem {
                     Label("Home", systemImage: "house")
