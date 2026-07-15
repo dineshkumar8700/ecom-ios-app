@@ -1,21 +1,64 @@
 import Foundation
 import SwiftUI
 
+struct LoggedInView: View {
+    let user: UserProfile
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Hello")
+            HStack {
+                AsyncImage(url: URL(string: user.picture)) { image in
+                    image
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .cornerRadius(10)
+                } placeholder: {
+                    ProgressView()
+                }
+                    
+                Text("\(user.name)")
+                    .fontWeight(.bold)
+            }
+  
+            Spacer()
+        }
+        .padding()
+        
+    }
+}
+
 struct LoginView: View {
 
     @ObservedObject var viewModel: LoginViewModel
 
     var body: some View {
         VStack(spacing: 24) {
-
-            Text("Welcome")
-
-            Button("Continue with Google") {
-                Task {
-                    await viewModel.loginWithGoogle()
+            
+            if let user = viewModel.user {
+                LoggedInView(user: user)
+            } else {
+                Text("Welcome Back!")
+                
+                Button {
+                    Task {
+                        await viewModel.loginWithGoogle()
+                    }
+                } label: {
+                    HStack {
+                        Text("Login with Google")
+                        Image("google_logo")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                    }
+                    .padding(10)
+                    .background(.black)
+                    .foregroundStyle(.white)
+                    .cornerRadius(5)
                 }
                 
             }
+            
         }
     }
 }

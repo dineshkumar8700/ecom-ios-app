@@ -2,6 +2,8 @@ import Foundation
 import Combine
 
 final class LoginViewModel: ObservableObject {
+    
+    @Published var user: UserProfile?
 
     private let loginUseCase: LoginWithGoogleUseCase
     private let exchangeCodeUseCase: ExchangeAuthorizationCodeUseCase
@@ -19,7 +21,7 @@ final class LoginViewModel: ObservableObject {
             let token = try await exchangeCodeUseCase.execute(authorizationGrant: grant)
             let profile = try GoogleIDTokenDecoder().decode(idToken: token.idToken)
             
-            print(profile)
+            self.user = profile
 //            Fetching explicitly
 //            let profile = try await getProfileUseCase.execute(accessToken: token.accessToken)
         }
