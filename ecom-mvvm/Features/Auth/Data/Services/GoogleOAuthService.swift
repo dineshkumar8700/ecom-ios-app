@@ -22,7 +22,7 @@ final class GoogleOAuthService : GoogleOAuthServiceProtocol {
             state: session.state,
             pkce: session.pkce
         ) else {
-            throw AuthenticationError.invalidCallback
+            throw AuthenticationError.invalidAuthorizationURL
         }
 
         let callbackURL = try await authenticationSession.start(
@@ -33,6 +33,7 @@ final class GoogleOAuthService : GoogleOAuthServiceProtocol {
         let callback = try OAuthCallbackParser.parse(
             url: callbackURL
         )
+        
         
         return AuthorizationGrant(
             authorizationCode: callback.code,

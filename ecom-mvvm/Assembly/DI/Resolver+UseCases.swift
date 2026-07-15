@@ -34,5 +34,10 @@ extension Resolver {
         }
         .scope(.application)
         
+        register {
+            GetProfileUseCase(repository: Resolver.resolve())
+        }
+        .scope(.application)
+        
     }
 }

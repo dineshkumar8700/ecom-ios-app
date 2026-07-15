@@ -29,6 +29,13 @@ extension Resolver {
         }
         .scope(.application)
         
+        register {
+            ProfileService(
+                network: resolve()
+            ) as ProfileServiceProtocol
+        }
+        .scope(.application)
+        
         
     }
 }

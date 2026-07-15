@@ -27,5 +27,13 @@ extension Resolver {
             ) as OAuthTokenRepositoryProtocol
         }
         .scope(.application)
+        
+        register {
+            ProfileRepository(
+                service: resolve()
+            ) as ProfileRepositoryProtocol
+        }
+        .scope(.application)
+           
     }
 }
