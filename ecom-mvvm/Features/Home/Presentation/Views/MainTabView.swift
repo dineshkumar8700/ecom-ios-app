@@ -67,7 +67,7 @@ struct MainTabView: View {
             .tag(Tab.profile)
         }
         .onOpenURL { url in
-            print("URL: \(url)")
+            print("URL Inside Open URL: \(url)")
             
             guard let deepLink = parser.parse(url: url) else { return }
             

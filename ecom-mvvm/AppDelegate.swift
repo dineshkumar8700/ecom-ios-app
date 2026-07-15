@@ -1,28 +1,38 @@
 import Foundation
 import UIKit
-import FirebaseCore
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     
     func application(
-        _ app: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
-        
-        FirebaseApp.configure()
-        
+        print("Launch - This will now fire correctly.")
         return true
     }
-    
+
     func application(
-        _ app: UIApplication,
-        open url: URL,
-        options: [UIApplication.OpenURLOptionsKey : Any] = [:]
-    ) -> Bool {
+        _ application: UIApplication,
+        configurationForConnecting connectingSceneSession: UISceneSession,
+        options: UIScene.ConnectionOptions
+    ) -> UISceneConfiguration {
+        let sceneConfig = UISceneConfiguration(name: nil, sessionRole: connectingSceneSession.role)
+        sceneConfig.delegateClass = SceneDelegate.self
+        return sceneConfig
+    }
+}
 
-        print("Deeplink URL IS: \(url)")
-
-        return true
+class SceneDelegate: NSObject, UIWindowSceneDelegate {
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.first?.url else { return }
+        print("SceneDelegate (Background/Active State):", url)
     }
     
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        if let url = connectionOptions.urlContexts.first?.url {
+
+            print("SceneDelegate (Cold Launch State):", url)
+        }
+    }
 }
