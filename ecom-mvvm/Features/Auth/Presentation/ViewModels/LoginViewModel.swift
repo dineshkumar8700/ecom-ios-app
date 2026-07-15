@@ -17,9 +17,11 @@ final class LoginViewModel: ObservableObject {
         do {
             let grant = try await loginUseCase.execute()
             let token = try await exchangeCodeUseCase.execute(authorizationGrant: grant)
-            let profile = try await getProfileUseCase.execute(accessToken: token.accessToken)
+            let profile = try GoogleIDTokenDecoder().decode(idToken: token.idToken)
             
-            print("User Profile: \n \(profile)")
+            print(profile)
+//            Fetching explicitly
+//            let profile = try await getProfileUseCase.execute(accessToken: token.accessToken)
         }
         catch {
             print(error.localizedDescription)
