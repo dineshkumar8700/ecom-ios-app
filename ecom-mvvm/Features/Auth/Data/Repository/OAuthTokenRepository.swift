@@ -8,7 +8,7 @@ final class OAuthTokenRepository: OAuthTokenRepositoryProtocol {
         self.service = service
     }
 
-    func exchange(authorizationGrant: AuthorizationGrant) async throws -> OAuthToken {
+    func exchange(authorizationGrant: AuthorizationGrant) async throws -> OAuthTokens {
 
         let response = try await service.exchange(
             authorizationGrant: authorizationGrant

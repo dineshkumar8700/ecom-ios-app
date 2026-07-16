@@ -30,25 +30,26 @@ struct LoggedInView: View {
 
 struct LoginView: View {
 
-    @ObservedObject var viewModel: LoginViewModel
+    @ObservedObject var vm: LoginViewModel
+    @EnvironmentObject var session: SessionManager
 
     var body: some View {
         VStack(spacing: 24) {
             
-            if let user = viewModel.user {
+            if let user = session.currentUser {
                 LoggedInView(user: user)
             } else {
                 Text("Welcome Back!")
                 
                 Button {
                     Task {
-                        await viewModel.loginWithGoogle()
+                        await vm.loginWithGoogle()
                     }
                 } label: {
                     HStack {
                         Text("Login with Google")
                         Image("google_logo")
-                            .resizable()
+                            .resizable()	
                             .frame(width: 20, height: 20)
                     }
                     .padding(10)
@@ -59,6 +60,9 @@ struct LoginView: View {
                 
             }
             
+        }
+        .task {
+            await vm.load()
         }
     }
 }

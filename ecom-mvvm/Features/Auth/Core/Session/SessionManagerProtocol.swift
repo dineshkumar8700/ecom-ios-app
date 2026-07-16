@@ -1,6 +1,7 @@
 import Foundation
 
-protocol SessionManagerProtocol {
+@MainActor
+protocol SessionManagerProtocol: ObservableObject {
     var isLoggedIn: Bool { get }
     var currentUser: UserProfile? { get }
     

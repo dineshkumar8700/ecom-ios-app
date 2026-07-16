@@ -4,6 +4,6 @@ protocol OAuthTokenRepositoryProtocol {
 
     func exchange(
         authorizationGrant: AuthorizationGrant
-    ) async throws -> OAuthToken
+    ) async throws -> OAuthTokens
 
 }

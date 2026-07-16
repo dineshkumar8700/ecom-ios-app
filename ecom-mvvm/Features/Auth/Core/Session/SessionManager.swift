@@ -1,8 +1,12 @@
 import Foundation
 import Combine
 
+enum AuthError: Error {
+    case noAccessToken
+}
+
 @MainActor
-final class SessionStore: ObservableObject, SessionManagerProtocol {
+final class SessionManager: ObservableObject, SessionManagerProtocol {
 
     @Published private(set) var isLoggedIn = false
     @Published private(set) var currentUser: UserProfile?
@@ -14,23 +18,26 @@ final class SessionStore: ObservableObject, SessionManagerProtocol {
     }
 
     func saveSession(tokens: OAuthTokens, user: UserProfile) throws {
-        try keychainStore.save(tokens, for: "oauth_tokens")
-        currentUser = user
-        isLoggedIn = true
+        try keychainStore.save(tokens, for: KeychainKey.oAuthTokens)
+        self.setUser(user)
     }
 
     func restoreSession() throws -> Bool {
         let tokens = try keychainStore.load(
             OAuthTokens.self,
-            for: "oauth_tokens"
+            for: KeychainKey.oAuthTokens
         )
+        
+        if ((tokens) != nil) {
+            isLoggedIn = true
+        }
         
         return tokens != nil
         
     }
 
     func logout() throws {
-        try keychainStore.delete(for: "oauth_tokens")
+        try keychainStore.delete(for: KeychainKey.oAuthTokens)
         
         currentUser = nil
         isLoggedIn = false
@@ -39,5 +46,13 @@ final class SessionStore: ObservableObject, SessionManagerProtocol {
     func setUser(_ user: UserProfile) {
         currentUser = user
         isLoggedIn = true
+    }
+    
+    func getAccessToken() throws -> String {
+        if let tokens = try keychainStore.load(OAuthTokens.self, for: KeychainKey.oAuthTokens) {
+            return tokens.accessToken
+        }
+        
+        throw AuthError.noAccessToken
     }
 }

@@ -9,7 +9,7 @@ extension Resolver {
         .scope(.application)
         
         register {
-            SessionStore()
+            SessionManager(keychainStore: resolve())
         }
         .scope(.application)
     }

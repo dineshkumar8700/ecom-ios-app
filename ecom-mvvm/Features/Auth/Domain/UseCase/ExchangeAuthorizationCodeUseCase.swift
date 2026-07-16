@@ -8,7 +8,7 @@ final class ExchangeAuthorizationCodeUseCase {
         self.repository = repository
     }
 
-    func execute(authorizationGrant: AuthorizationGrant) async throws -> OAuthToken {
+    func execute(authorizationGrant: AuthorizationGrant) async throws -> OAuthTokens {
 
         try await repository.exchange(
             authorizationGrant: authorizationGrant

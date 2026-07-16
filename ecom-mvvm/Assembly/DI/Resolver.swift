@@ -10,5 +10,6 @@ extension Resolver: ResolverRegistering {
         registerRepositories()
         regiserSharedState()
         registerUseCases()
+        registerKeychain()
     }
 }

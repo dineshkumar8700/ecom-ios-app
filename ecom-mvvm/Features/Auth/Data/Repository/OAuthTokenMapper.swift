@@ -2,13 +2,13 @@ import Foundation
 
 enum OAuthTokenMapper {
 
-    static func toDomain(_ response: OAuthTokenResponse) -> OAuthToken {
+    static func toDomain(_ response: OAuthTokenResponse) -> OAuthTokens {
 
-        OAuthToken(
+        OAuthTokens(
             accessToken: response.access_token,
             refreshToken: response.refresh_token,
             idToken: response.id_token,
-            expiresIn: response.expires_in,
+            expiryDate: Date().addingTimeInterval(Double(response.expires_in)),
             tokenType: response.token_type
         )
     }
