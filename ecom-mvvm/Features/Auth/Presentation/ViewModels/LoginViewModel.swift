@@ -4,17 +4,18 @@ import Combine
 import Resolver
 
 final class LoginViewModel: ObservableObject {
-
+    @Published var isLoading: Bool = false
+    
     private let loginUseCase: LoginWithGoogleUseCase
     private let exchangeCodeUseCase: ExchangeAuthorizationCodeUseCase
-    private let getProfileUseCase: GetProfileUseCase
+    private let authorizedClient: AuthorizedNetworkClient
     @ObservedObject private var sessionManager: SessionManager
 
-    init(loginUseCase: LoginWithGoogleUseCase, exchangeCodeUseCase: ExchangeAuthorizationCodeUseCase, getProfileUseCase: GetProfileUseCase, sessionManager: SessionManager) {
+    init(loginUseCase: LoginWithGoogleUseCase, exchangeCodeUseCase: ExchangeAuthorizationCodeUseCase, authorizedClient: AuthorizedNetworkClient, sessionManager: SessionManager) {
         self.loginUseCase = loginUseCase
         self.exchangeCodeUseCase = exchangeCodeUseCase
-        self.getProfileUseCase = getProfileUseCase
         self.sessionManager = sessionManager
+        self.authorizedClient = authorizedClient
     }
 
     func loginWithGoogle() async {
@@ -32,12 +33,18 @@ final class LoginViewModel: ObservableObject {
     }
     
     func load() async {
+        self.isLoading = true
+        
+        defer {
+            self.isLoading = false
+        }
+        
         do {
-            let accessToken = try sessionManager.getAccessToken()
-            let profile = try await getProfileUseCase.execute(accessToken: accessToken)
+            let profile = try await authorizedClient.loadUserProfile()
             sessionManager.setUser(profile)
         } catch {
-            print(error.localizedDescription)
+            print("User is logged out")
+            try? sessionManager.logout()
         }
     }
 }

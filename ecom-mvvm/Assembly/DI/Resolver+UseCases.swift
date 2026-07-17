@@ -39,5 +39,13 @@ extension Resolver {
         }
         .scope(.application)
         
+        register {
+            RefreshTokenUseCase(
+                client: Resolver.resolve(),
+                repository: Resolver.resolve()
+            )
+        }
+        .scope(.application)
+        
     }
 }

@@ -14,4 +14,8 @@ protocol SessionManagerProtocol: ObservableObject {
     
     func logout() throws
     
+    func getAccessToken() throws -> String
+    
+    func getRefreshToken() throws -> String
+    
 }

@@ -28,6 +28,33 @@ struct LoggedInView: View {
     }
 }
 
+struct LoggedOutView: View {
+    let vm: LoginViewModel
+    
+    var body: some View {
+        VStack {
+            Text("Welcome Back!")
+            
+            Button {
+                Task {
+                    await vm.loginWithGoogle()
+                }
+            } label: {
+                HStack {
+                    Text("Login with Google")
+                    Image("google_logo")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                }
+                .padding(10)
+                .background(.black)
+                .foregroundStyle(.white)
+                .cornerRadius(5)
+            }
+        }
+    }
+}
+
 struct LoginView: View {
 
     @ObservedObject var vm: LoginViewModel
@@ -36,28 +63,12 @@ struct LoginView: View {
     var body: some View {
         VStack(spacing: 24) {
             
-            if let user = session.currentUser {
+            if vm.isLoading {
+                ProgressView()
+            }  else if let user = session.currentUser {
                 LoggedInView(user: user)
-            } else {
-                Text("Welcome Back!")
-                
-                Button {
-                    Task {
-                        await vm.loginWithGoogle()
-                    }
-                } label: {
-                    HStack {
-                        Text("Login with Google")
-                        Image("google_logo")
-                            .resizable()	
-                            .frame(width: 20, height: 20)
-                    }
-                    .padding(10)
-                    .background(.black)
-                    .foregroundStyle(.white)
-                    .cornerRadius(5)
-                }
-                
+            }   else {
+                LoggedOutView(vm: vm)
             }
             
         }

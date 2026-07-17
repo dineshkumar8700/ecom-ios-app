@@ -57,7 +57,6 @@ final class KeychainStore: KeychainStoreProtocol {
             throw KeychainError.deleteFailed(status)
         }
         
-        
     }
 
     func save<T: Codable>(_ value: T, for key: String) throws {

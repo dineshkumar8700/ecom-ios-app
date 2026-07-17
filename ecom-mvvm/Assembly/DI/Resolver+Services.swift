@@ -36,6 +36,15 @@ extension Resolver {
         }
         .scope(.application)
         
+        register {
+            AuthorizedNetworkClient(
+                sessionManager:resolve(),
+                getProfileUseCase: resolve(),
+                refreshTokenuseCase: resolve()
+            )
+        }
+        .scope(.application)
+        
         
     }
 }

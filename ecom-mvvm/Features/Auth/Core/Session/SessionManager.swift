@@ -3,6 +3,7 @@ import Combine
 
 enum AuthError: Error {
     case noAccessToken
+    case noRefreshToken
 }
 
 @MainActor
@@ -28,10 +29,6 @@ final class SessionManager: ObservableObject, SessionManagerProtocol {
             for: KeychainKey.oAuthTokens
         )
         
-        if ((tokens) != nil) {
-            isLoggedIn = true
-        }
-        
         return tokens != nil
         
     }
@@ -48,6 +45,7 @@ final class SessionManager: ObservableObject, SessionManagerProtocol {
         isLoggedIn = true
     }
     
+    
     func getAccessToken() throws -> String {
         if let tokens = try keychainStore.load(OAuthTokens.self, for: KeychainKey.oAuthTokens) {
             return tokens.accessToken
@@ -55,4 +53,13 @@ final class SessionManager: ObservableObject, SessionManagerProtocol {
         
         throw AuthError.noAccessToken
     }
+    
+    func getRefreshToken() throws -> String {
+        if let tokens = try keychainStore.load(OAuthTokens.self, for: KeychainKey.oAuthTokens) {
+            return tokens.refreshToken
+        }
+        
+        throw AuthError.noRefreshToken
+    }
+    
 }

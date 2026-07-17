@@ -20,7 +20,7 @@ struct ecom_mvvmApp: App {
                     do {
                         _ = try sessionManager.restoreSession()
                     } catch {
-                        print(error.localizedDescription)
+                        print("Error in App: \(error.localizedDescription)")
                     }
                 }
         }

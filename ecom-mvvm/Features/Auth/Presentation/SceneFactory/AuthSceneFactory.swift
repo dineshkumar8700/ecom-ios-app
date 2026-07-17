@@ -6,7 +6,7 @@ final class AuthSceneFactory {
         let vm = LoginViewModel(
             loginUseCase: Resolver.resolve(),
             exchangeCodeUseCase: Resolver.resolve(),
-            getProfileUseCase: Resolver.resolve(),
+            authorizedClient: Resolver.resolve(),
             sessionManager: Resolver.resolve()
         )
         

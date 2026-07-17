@@ -11,7 +11,9 @@ class URLSessionNetworkClient: NetworkClient {
         }
         
         guard 200...299 ~= httpResponse.statusCode else {
-            throw APIError.serverError
+            print("Error code in NetworkClient: \(httpResponse.statusCode)")
+            
+            throw APIError.serverError(httpResponse.statusCode)
         }
         
         return try JSONDecoder().decode(T.self, from: data)
